@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from './components/SearchForm.js';
 import HotelList from './components/HotelList.js';
+import RakutenTravelApi from './libs/RakutenTravelApi.js';
 
 class Home extends React.Component {
   constructor(props){
@@ -50,6 +51,7 @@ class Home extends React.Component {
             checkInDay={this.state.checkInDay}
             checkOutDay={this.state.checkOutDay}
             />
+          <RakutenTravelApi />
       </div>
     );
   }
