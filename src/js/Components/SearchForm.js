@@ -7,8 +7,6 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       Location: "",
-      checkInDay: "",
-      checkOutDay: ""
     };
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
@@ -17,23 +15,21 @@ class SearchForm extends React.Component {
   }
 
   handleCheckInChange(date){
-    this.setState({
-      checkInDay: date,
-    });
+    this.props.handleCheckInChange(date);
   }
   handleCheckOutChange(date){
-    this.setState({
-      checkOutDay: date,
-    });
+    this.props.handleCheckOutChange(date);
   }
+
   checkAnswer(e){
     e.preventDefault();
-    if (this.state.Location=="" && this.state.checkInDay=="" && this.state.checkOutDay=="") {
+    if (this.state.Location=="" && this.props.checkInDay=="" && this.props.checkOutDay=="") {
       alert("どちらかは入力してください");
-    }else if(this.state.Location!="" && this.state.checkInDay!="" && this.state.checkOutDay!=""){
+    }else if(this.state.Location!="" && this.props.checkInDay!="" && this.props.checkOutDay!=""){
+      console.log("OK");
       console.log(this.state.Location);
-      console.log(this.state.checkInDay);
-      console.log(this.state.checkOutDay);
+      console.log(this.props.checkInDay);
+      console.log(this.props.checkOutDay);
     }
   }
   setLocation(e){
@@ -47,12 +43,12 @@ class SearchForm extends React.Component {
         <input type="text" placeholder="地名" onChange={this.setLocation}/><br/>
         チェックイン日
         <DatePicker
-          selected={this.state.checkInDay}
+          selected={this.props.checkInDay}
           onChange={this.handleCheckInChange}
           />
         チェックアウト日
         <DatePicker
-          selected={this.state.checkOutDay}
+          selected={this.props.checkOutDay}
           onChange={this.handleCheckOutChange}
           /><br/>
         <input type="submit" onClick={this.checkAnswer} value="検索"/>
