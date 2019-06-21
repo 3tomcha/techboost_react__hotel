@@ -9,3 +9,4 @@ class RakutenTravelApi extends React.Component{
   }
   // const url = "https://app.rakuten.co.jp/services/api/Travel/GetHotelChainList/20131024?format=json&applicationId=1045719661893592374";
 }
+export default RakutenTravelApi;
