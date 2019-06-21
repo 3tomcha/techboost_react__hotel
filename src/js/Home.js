@@ -51,6 +51,7 @@ class Home extends React.Component {
             checkInDay={this.state.checkInDay}
             checkOutDay={this.state.checkOutDay}
             />
+          <RakutenTravelApi />
       </div>
     );
   }
