@@ -2,6 +2,7 @@ import React from 'react';
 import SearchForm from './components/SearchForm.js';
 import HotelList from './components/HotelList.js';
 import RakutenTravelApi from './libs/RakutenTravelApi.js';
+import GoogleGeocodeAPI from './libs/GoogleGeocodeAPI.js';
 
 class Home extends React.Component {
   constructor(props){
@@ -52,6 +53,7 @@ class Home extends React.Component {
             checkOutDay={this.state.checkOutDay}
             />
           <RakutenTravelApi />
+          <GoogleGeocodeAPI />
       </div>
     );
   }
