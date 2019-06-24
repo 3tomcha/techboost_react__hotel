@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
 import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
+import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 
 class SearchForm extends React.Component {
   constructor(props){
@@ -27,24 +28,36 @@ class SearchForm extends React.Component {
     if (this.state.Location=="" && this.props.checkInDay=="" && this.props.checkOutDay=="") {
       alert("どちらかは入力してください");
     }else if(this.state.Location!="" && this.props.checkInDay!="" && this.props.checkOutDay!=""){
-      console.log("OK");
-      console.log(this.state.Location);
-      console.log(this.props.checkInDay);
-      console.log(this.props.checkOutDay);
-      let googleGeocodeAPI = new GoogleGeocodeAPI("東京都杉並区西荻北");
-      // let json = googleGeocodeAPI.sendRequest();
-      googleGeocodeAPI.sendRequest().then(json => console.log(json));
-      // console.log(json);
-    }
+      const location = this.state.Location;
+      var checkInDay = this.props.checkInDay.getFullYear() + "-"
+      + ("0" + (this.props.checkInDay.getMonth() + 1) ).slice(-2) + "-"
+      + this.props.checkInDay.getDate();
+
+      var checkOutDay = this.props.checkOutDay.getFullYear() + "-"
+      + ("0" + (this.props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
+      + this.props.checkOutDay.getDate();
+
+      let googleGeocodeAPI = new GoogleGeocodeAPI(location);
+      googleGeocodeAPI.sendRequest().then(json =>{
+        let rakutenTravelApi = new RakutenTravelApi;
+        rakutenTravelApi.sendRequest(
+          checkInDay,
+          checkOutDay,
+          Math.round(json.latitude*100)/100,
+          Math.round(json.longitude*100)/100
+        );
+      }
+    );
   }
-  setLocation(e){
-    this.state.Location = e.target.value;
-  }
-  render() {
-    return(
-      <div>
-        <h1>検索フォーム</h1>
-        <form method="post" action="">
+}
+setLocation(e){
+  this.state.Location = e.target.value;
+}
+render() {
+  return(
+    <div>
+      <h1>検索フォーム</h1>
+      <form method="post" action="">
         <input type="text" placeholder="地名" onChange={this.setLocation}/><br/>
         チェックイン日
         <DatePicker
@@ -57,10 +70,10 @@ class SearchForm extends React.Component {
           onChange={this.handleCheckOutChange}
           /><br/>
         <input type="submit" onClick={this.checkAnswer} value="検索"/>
-        </form>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
+}
 }
 
 export default SearchForm;
