@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html charset="utf-8" >
 <body>
   <div id="map" style="width:400px; height:300px"></div>
 
@@ -16,8 +16,8 @@
       // alert(latlng.lat() + "," + latlng.lng());
       const latitude = latlng.lat();
       const longitude = latlng.lng();
-      // var ymap = new Y.Map("map");
-      // ymap.drawMap(new Y.LatLng(latlng.lat(), latlng.lng()), 17, Y.LayerSetId.NORMAL);
+      var ymap = new Y.Map("map");
+      ymap.drawMap(new Y.LatLng(latlng.lat(), latlng.lng()), 17, Y.LayerSetId.NORMAL);
     }
   } );
 </script>

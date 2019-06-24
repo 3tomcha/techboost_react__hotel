@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
+import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 
 class SearchForm extends React.Component {
   constructor(props){
@@ -30,6 +31,10 @@ class SearchForm extends React.Component {
       console.log(this.state.Location);
       console.log(this.props.checkInDay);
       console.log(this.props.checkOutDay);
+      let googleGeocodeAPI = new GoogleGeocodeAPI("東京都杉並区西荻北");
+      // let json = googleGeocodeAPI.sendRequest();
+      googleGeocodeAPI.sendRequest().then(json => console.log(json));
+      // console.log(json);
     }
   }
   setLocation(e){

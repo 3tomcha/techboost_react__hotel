@@ -1,27 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-class GoogleGeocodeAPI extends React.Component{
-  sendRequest(e){
-    const address = "東京都杉並区西荻北";
+class GoogleGeocodeAPI{
+  constructor(address){
+    this.address = address;
+  }
+  sendRequest(){
+    const address = this.address;
     let request = {query : address};
-
     let geocoder = new Y.GeoCoder();
+
+    var latitude;
+    var longitude;
+
+    let p1 = new Promise((resolve, reject) =>
     geocoder.execute( request , function( ydf ){
       if( ydf.features.length > 0 ){
         let latlng = ydf.features[0].latlng;
-        const latitude = latlng.lat();
-        const longitude = latlng.lng();
-        // alert(latitude + "," + longitude);
-        console.log(latitude + "," + longitude);
+        resolve(latlng);
       }
     })
-
-  }
-  render(){
-    return(
-      <button onClick={(e) => this.sendRequest(e)}>GoogleGeocodeAPIのテスト</button>
-    );
-  }
+  );
+  return p1.then(latlng=> {
+    return {"latitude":latlng.lat(), "longitude":latlng.lng()};
+  });
+}
 }
 export default GoogleGeocodeAPI;
