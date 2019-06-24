@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div id="map" style="width:400px; height:300px"></div>
+
+  <script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPUFjQzFjbjNvemRPayZzPWNvbnN1bWVyc2VjcmV0Jng9MzQ-"></script>
+  <script type="text/javascript">
+  //住所から、緯度経度を求めるジオコーディングのサンプルです。
+  const address = "東京都杉並区西荻北";
+  let request = { query : address };
+
+  let geocoder = new Y.GeoCoder();
+  geocoder.execute( request , function( ydf ) {
+    if ( ydf.features.length > 0 ) {
+      let latlng = ydf.features[0].latlng;
+      // alert(latlng.lat() + "," + latlng.lng());
+      const latitude = latlng.lat();
+      const longitude = latlng.lng();
+      // var ymap = new Y.Map("map");
+      // ymap.drawMap(new Y.LatLng(latlng.lat(), latlng.lng()), 17, Y.LayerSetId.NORMAL);
+    }
+  } );
+</script>
+</body>
+</html>
