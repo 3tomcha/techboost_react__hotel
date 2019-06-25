@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 
 function HotelList(props){
   const jsons = props.JSONS;
+  if(props.hotels){
+  var hotels = props.hotels.hotels[0].hotel[0].hotelBasicInfo.hotelName;
+  console.log(hotels);
+  }
 
   return(
     <div>
@@ -10,11 +14,11 @@ function HotelList(props){
     {jsons.map(json => {
       return(
         <li>
-        {json.name}<br/>
-        {json.image}<br/>
-        {json.goodpoint}<br/>
-        {json.price}<br/>
-        {json.averagepoint}<br/>
+        // {json.name}<br/>
+        // {json.image}<br/>
+        // {json.goodpoint}<br/>
+        // {json.price}<br/>
+        // {json.averagepoint}<br/>
         </li>
       );
     })

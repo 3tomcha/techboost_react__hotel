@@ -6,12 +6,12 @@ class RakutenTravelApi{
     url += `checkinDate=${checkinDate}&checkoutDate=${checkoutDate}&latitude=${latitude}&longitude=${longitude}`;
     url += "&searchRadius=3&datumType=1&applicationId=1045719661893592374";
 
-    fetch(url)
+    return fetch(url)
     .then(function(response) {
       return response.json();
     })
     .then(function(myJson) {
-      console.log(JSON.stringify(myJson));
+      return JSON.stringify(myJson);
     });
   }
 }

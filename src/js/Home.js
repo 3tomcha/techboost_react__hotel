@@ -9,7 +9,8 @@ class Home extends React.Component {
     super(props);
     this.state = {
       checkInDay: "",
-      checkOutDay: ""
+      checkOutDay: "",
+      hotels: "",
     };
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
@@ -27,7 +28,12 @@ class Home extends React.Component {
       checkOutDay: date,
     });
   }
-
+  updateState(state){
+    this.setState({
+      hotels: state
+    });
+    // console.log(this.state.hotels);
+  }
   render(){
     var jsons = [];
     for (var i = 0; i < 10; i++) {
@@ -46,8 +52,10 @@ class Home extends React.Component {
           checkOutDay={this.state.checkOutDay}
           handleCheckInChange={this.handleCheckInChange}
           handleCheckOutChange={this.handleCheckOutChange}
+          updateState={this.updateState.bind(this)}
           />
           <HotelList
+            hotels={this.state.hotels}
             JSONS={jsons}
             checkInDay={this.state.checkInDay}
             checkOutDay={this.state.checkOutDay}
