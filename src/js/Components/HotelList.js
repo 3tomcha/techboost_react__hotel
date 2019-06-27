@@ -3,29 +3,25 @@ import ReactDOM from 'react-dom';
 
 function HotelList(props){
   const jsons = props.JSONS;
+  var hotels = [];
   if(props.hotels){
-  var hotels = props.hotels.hotels[0].hotel[0].hotelBasicInfo.hotelName;
-  console.log(hotels);
+    hotels = props.hotels.hotels;
   }
 
   return(
     <div>
-    <ul>
-    {jsons.map(json => {
-      return(
-        <li>
-        // {json.name}<br/>
-        // {json.image}<br/>
-        // {json.goodpoint}<br/>
-        // {json.price}<br/>
-        // {json.averagepoint}<br/>
-        </li>
-      );
-    })
+      {hotels.map(hotel => {
+        return(
+          <ul>
+            <li>{hotel.hotel[0].hotelBasicInfo.hotelName}</li>
+            <li><img src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl}/></li>
+            <li>{hotel.hotel[0].hotelBasicInfo.hotelSpecial}</li>
+            <li>{hotel.hotel[0].hotelBasicInfo.hotelMinCharge}</li>
+            <li>{hotel.hotel[0].hotelBasicInfo.reviewAverage}</li>
+          </ul>
+        )})}
+        <a href="/hotels/:id?checkInDate=yyyy-mm-dd&checkOutDate=yyyy-mm-dd"><button>詳細ボタン</button></a>
+      </div>
+    );
   }
-  </ul>
-  <a href="/hotels/:id?checkInDate=yyyy-mm-dd&checkOutDate=yyyy-mm-dd"><button>詳細ボタン</button></a>
-  </div>
-);
-}
-export default HotelList;
+  export default HotelList;
