@@ -14,5 +14,18 @@ class RakutenTravelApi{
       return JSON.stringify(myJson);
     });
   }
+  fetchDetail(hotelNo){
+    let url = "https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426?format=json&hotelNo=";
+    url += hotelNo;
+    url += "&applicationId=1045719661893592374";
+
+    return fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      return JSON.stringify(myJson);
+    });
+  }
 }
 export default RakutenTravelApi;

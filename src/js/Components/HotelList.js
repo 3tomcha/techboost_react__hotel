@@ -19,7 +19,7 @@ function HotelList(props){
   return(
     <div>
     {hotels.map(hotel => {
-      const url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
+      let url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
 
       return(
         <div>
