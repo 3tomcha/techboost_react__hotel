@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link, Route } from "react-router-dom"
 
 function HotelList(props){
   const jsons = props.JSONS;
@@ -18,7 +19,7 @@ function HotelList(props){
   return(
     <div>
     {hotels.map(hotel => {
-      const url ='/hotels/:' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
+      const url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
 
       return(
         <div>
@@ -29,9 +30,9 @@ function HotelList(props){
             <li>{hotel.hotel[0].hotelBasicInfo.hotelMinCharge}</li>
             <li>{hotel.hotel[0].hotelBasicInfo.reviewAverage}</li>
           </ul>
-          <a href={url}>
+          <Link to={url}>
             <button>詳細ボタン</button>
-          </a>
+          </Link>
         </div>
       )})}
     </div>
