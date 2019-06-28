@@ -8,8 +8,10 @@ class SearchForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      location: "",
-      hotels: "",
+      location: null,
+      hotels: null,
+      checkInDay: null,
+      checkOutDay: null
     };
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
@@ -47,12 +49,12 @@ class SearchForm extends React.Component {
                                             Math.round(googleGeocode.latitude*100)/100,
                                             Math.round(googleGeocode.longitude*100)/100);
       const hotels  = await JSON.parse(rakutenTravel).hotels
-      this.hotels = hotels;
-      this.props.updateState({
-        hotels : hotels
+      this.setState({
+        hotels: hotels,
+        checkInDay: this.props.checkInDay,
+        checkOutDay: this.props.checkOutDay
       });
-      // await console.log(JSON.parse(rakutenTravel).hotels);
-      // console.log(rakutenTravel.hotels);
+      this.props.updateState(this.state);
       }
     }
     setLocation(e){

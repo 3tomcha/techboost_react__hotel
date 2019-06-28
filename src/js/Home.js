@@ -8,9 +8,10 @@ class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      checkInDay: "",
-      checkOutDay: "",
-      hotels: "",
+      location: null,
+      hotels: null,
+      checkInDay: null,
+      checkOutDay: null
     };
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
@@ -29,10 +30,7 @@ class Home extends React.Component {
     });
   }
   updateState(state){
-    this.setState({
-      hotels: state
-    });
-    // console.log(this.state.hotels);
+    this.setState(state);
   }
   render(){
     var jsons = [];
