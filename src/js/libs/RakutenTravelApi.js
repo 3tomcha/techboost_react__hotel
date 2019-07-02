@@ -14,18 +14,20 @@ class RakutenTravelApi{
       return JSON.stringify(myJson);
     });
   }
-  fetchDetail(hotelNo){
-    let url = "https://app.rakuten.co.jp/services/api/Travel/HotelDetailSearch/20170426?format=json&hotelNo=";
+  async fetchDetailPlan(hotelNo, checkInDate, checkOutDate){
+
+    let url = "https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=";
+    url += checkInDate;
+    url += "&checkoutDate=";
+    url += checkOutDate;
+    url += "&hotelNo=";
     url += hotelNo;
     url += "&applicationId=1045719661893592374";
 
-    return fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(myJson) {
-      return JSON.stringify(myJson);
-    });
+    let response = await fetch(url);
+    let json = await response.json();
+    return await JSON.stringify(json);
+
   }
 }
 export default RakutenTravelApi;
