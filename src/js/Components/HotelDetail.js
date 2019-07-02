@@ -12,19 +12,73 @@ class HotelDetail extends React.Component {
     this.state = {
       id: this.props.match.params.id,
       checkInDay: queryString.parse(this.props.location.search).checkInDate,
-      checkOutDay: queryString.parse(this.props.location.search).checkOutDate
+      checkOutDay: queryString.parse(this.props.location.search).checkOutDate,
+      hotelName: "",
+      reviewAverage: "",
+      hotelImageUrl: "",
+      hotelSpecial: "",
+      access: "",
+      userReview: "",
+      roomInfo: ""
     };
   }
   async componentDidMount(){
     let rakutenTravelApi = new RakutenTravelApi;
-    let response = await rakutenTravelApi.fetchDetail(this.state.id);
-    console.log(response);
+    let response = await rakutenTravelApi.fetchDetailPlan(
+      this.state.id,
+      this.state.checkInDay,
+      this.state.checkOutDay
+    );
+    const hotel = await JSON.parse(response).hotels[0].hotel;
+    let basicInfo="";
+    let roomInfo=[];
+
+    hotel.map((value,index) =>{
+    if(index == 0){
+      basicInfo = value;
+    }else{
+      roomInfo.push(value);
+    }
+  }
+  );
+  console.log(basicInfo);
+  console.log(roomInfo);
+    // const basicInfo = hotel[0].hotelBasicInfo;
+
+    // 1～はroominfoなので、別のコンポーネントを割り当てる
+    console.log(hotel);
+
+    this.setState({
+      hotelName: basicInfo.hotelName,
+      reviewAverage: basicInfo.reviewAverage,
+      hotelImageUrl: basicInfo.hotelImageUrl,
+      hotelSpecial: basicInfo.hotelSpecial,
+      access: basicInfo.access,
+      userReview: basicInfo.userReview,
+      roomInfo: roomInfo
+    });
+
+
   }
     render() {
       // console.log(queryString.parse(this.props.location.search));
       return(
         <div>HotelDetail {this.props.match.params.id}
-        </div>
+
+            <ul>
+              <li>{this.state.hotelName}</li>
+              <li>{this.state.reviewAverage}</li>
+              <li>{this.state.hotelImageUrl}</li>
+              <li>{this.state.hotelSpecial}</li>
+              <li>{this.state.access}</li>
+              <li>{this.state.userReview}</li>
+
+              // <li>{this.state.planName}</li>
+              // <li>{this.state.roomBasicInfo}</li>
+              // <li>{this.state.dailyCharge}</li>
+            </ul>
+
+</div>
       );
     }
   }

@@ -28,11 +28,14 @@
     "sass": "*",
     "sass-loader": "*",
     "style-loader": "^0.23.1",
-    "webpack": "^4.34.0",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.4"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "enzyme": "^3.10.0",
+    "jsdom": "^15.1.1",
     "mini-css-extract-plugin": "^0.7.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.1",
@@ -43,6 +46,7 @@
     "react-router-dom": "^5.0.1",
     "reactdom": "^2.0.0",
     "semantic-ui-react": "^0.87.2",
+    "sinon": "^7.3.2",
     "webpack-dev-server": "^3.7.1"
   }
 }
