@@ -9,6 +9,13 @@
     "start": "webpack-dev-server --open --inline --hot",
     "watch": "webpack --watch --config webpack.config.js"
   },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -48,6 +55,7 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "reactdom": "^2.0.0",
+    "require-from-url": "^3.1.2",
     "semantic-ui-react": "^0.87.2",
     "webpack-dev-server": "^3.7.1"
   }

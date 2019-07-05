@@ -63,12 +63,6 @@ exports[`hotels 1`] = `
       type="submit"
       value="検索"
     />
-    <p
-      className="button"
-      onClick={[Function]}
-    >
-      aa
-    </p>
   </form>
 </div>
 `;

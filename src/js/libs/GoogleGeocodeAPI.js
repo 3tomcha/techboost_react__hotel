@@ -1,3 +1,5 @@
+// GoogleGeocodeAPIの代わりにyahooのAPIを使用
+// https://developer.yahoo.co.jp/webapi/map/openlocalplatform/v1/js/service.html
 class GoogleGeocodeAPI{
   constructor(address){
     this.address = address;
