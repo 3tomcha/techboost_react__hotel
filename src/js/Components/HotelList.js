@@ -5,6 +5,7 @@ import { Link, Route } from "react-router-dom"
 function HotelList(props){
   const jsons = props.JSONS;
   var hotels = [];
+  console.log(props.hotels);
   if(props.hotels){
     hotels = props.hotels;
     var checkInDay = props.checkInDay.getFullYear() + "-"

@@ -17,6 +17,7 @@ class SearchForm extends React.Component {
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.setLocation = this.setLocation.bind(this);
+    this.testClick = this.testClick.bind(this);
   }
 
   handleCheckInChange(date){
@@ -54,11 +55,18 @@ class SearchForm extends React.Component {
         checkInDay: this.props.checkInDay,
         checkOutDay: this.props.checkOutDay
       });
+      console.log(this.props.checkInDay);
+      console.log(this.props.checkOutDay);
+      console.log(hotels);
       this.props.updateState(this.state);
       }
     }
     setLocation(e){
       this.state.location = e.target.value;
+    }
+    testClick(){
+      window.alert("abc");
+      // console.log("abc");
     }
     render() {
       return(
@@ -77,6 +85,7 @@ class SearchForm extends React.Component {
               onChange={this.handleCheckOutChange}
               /><br/>
             <input type="submit" onClick={this.checkAnswer} value="検索"/>
+            <p onClick={this.testClick} className="button">aa</p>
           </form>
         </div>
       );
