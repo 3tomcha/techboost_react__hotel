@@ -81,9 +81,9 @@ class SearchForm extends React.Component {
           checkInDay: this.props.checkInDay,
           checkOutDay: this.props.checkOutDay
         });
-        await console.log(this.props.checkInDay).catch((err) => console.log("RakutenTravelApiのエラー"));
-        await console.log(this.props.checkOutDay).catch((err) => console.log("RakutenTravelApiのエラー"));
-        await console.log(hotels).catch((err) => console.log("RakutenTravelApiのエラー"));
+        // await console.log(this.props.checkInDay).catch((err) => console.log("RakutenTravelApiのエラー"));
+        // await console.log(this.props.checkOutDay).catch((err) => console.log("RakutenTravelApiのエラー"));
+        // await console.log(hotels).catch((err) => console.log("RakutenTravelApiのエラー"));
         this.props.updateState(this.state);
       }else{
         alert("どちらかは入力してください");
