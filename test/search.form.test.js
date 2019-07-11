@@ -83,7 +83,7 @@ it("checkInDay and checkOutDay must be set in input", () => {
         let submit = searchForm.find('input').last();
         submit.simulate('click', { preventDefault : () => {} });
         // Y is not definedが動くようにしたい
-        expect(searchForm.state('location')).toBe('aaa');
+        expect(searchForm.state('location')).toBe('東京都千代田区丸の内１丁目');
       });;
 
 

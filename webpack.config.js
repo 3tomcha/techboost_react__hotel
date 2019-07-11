@@ -38,5 +38,6 @@ plugins: [
     // Options similar to the same options in webpackOptions.output
     filename: "style.css",
   })
-]
+],
+// target: 'node'
 };

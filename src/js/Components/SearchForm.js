@@ -48,56 +48,36 @@ class SearchForm extends React.Component {
       let rakutenTravelApi;
       let rakutenTravel;
 
-      // try {
-      //   googleGeocodeAPI = await new GoogleGeocodeAPI(location);
-      // } catch (e) {
-      //   console.log(e);
-      // }
-
       try {
-        // googleGeocode = await googleGeocodeAPI.sendRequest();
-        googleGeocode = await ( () => new Promise(resolve => {return resolve(getGeoCode())} ))();
+        googleGeocode = await getGeoCode();
         await console.log(googleGeocode);
-        // googleGeocode = await getGeoCode();
-        // // googleGeocode().then((res)=>console.log(res));
-        // await console.log(googleGeocode);
       } catch (e) {
-        console.log(e);
+        await console.log(e);
       }
 
-      const hoge = await (() =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve('hoge')
-    }, 2000)
-  }))()
 
-      try {
-        rakutenTravelApi = await new RakutenTravelApi();
-      } catch (e) {
-        console.log(e);
-      }
-
-      try {
-        rakutenTravel = await rakutenTravelApi
-        .sendRequest(checkInDay,checkOutDay,
-          Math.round(googleGeocode.latitude*100)/100,
-          Math.round(googleGeocode.longitude*100)/100).catch((err) => console.log("RakutenTravelApiのエラー"));
-        } catch (e) {
-          console.log(e);
-        }
-
-        const hotels  = await JSON.parse(rakutenTravel).hotels
-        // await console.log(hotels);
-        this.setState({
-          hotels: hotels,
-          checkInDay: this.props.checkInDay,
-          checkOutDay: this.props.checkOutDay
-        });
-        // await console.log(this.props.checkInDay).catch((err) => console.log("RakutenTravelApiのエラー"));
-        // await console.log(this.props.checkOutDay).catch((err) => console.log("RakutenTravelApiのエラー"));
-        // await console.log(hotels).catch((err) => console.log("RakutenTravelApiのエラー"));
-        this.props.updateState(this.state);
+      // try {
+      //   rakutenTravelApi = await new RakutenTravelApi();
+      // } catch (e) {
+      //   await console.log(e);
+      // }
+      //
+      // try {
+      //   rakutenTravel = await rakutenTravelApi
+      //   .sendRequest(checkInDay,checkOutDay,
+      //     Math.round(googleGeocode.latitude*100)/100,
+      //     Math.round(googleGeocode.longitude*100)/100).catch((err) => console.log("RakutenTravelApiのエラー"));
+      //   } catch (e) {
+      //     await console.log(e);
+      //   }
+      //
+      //   const hotels  = await JSON.parse(rakutenTravel).hotels
+      //   this.setState({
+      //     hotels: hotels,
+      //     checkInDay: this.props.checkInDay,
+      //     checkOutDay: this.props.checkOutDay
+      //   });
+      //   this.props.updateState(this.state);
       }else{
         alert("どちらかは入力してください");
         console.log("checkAnswerのfalseがうごきました");
