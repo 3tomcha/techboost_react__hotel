@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
 import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
-import getGeoCode from '../libs/GoogleGeocodeAPI_new.js';
+import GoogleGeocodeAPI_new from '../libs/GoogleGeocodeAPI_new.js';
 
 class SearchForm extends React.Component {
   constructor(props){
@@ -49,8 +49,13 @@ class SearchForm extends React.Component {
       let rakutenTravel;
 
       try {
-        googleGeocode = await getGeoCode();
-        await console.log(googleGeocode);
+        // googleGeocode = await getGeoCode();
+        // await console.log(googleGeocode);
+        // getGeoCode().then(function(response){console.log(response)});
+        let googleGeocodeAPI_new = new GoogleGeocodeAPI_new;
+        let res = await googleGeocodeAPI_new.fetchDetailPlan();
+        // await console.log(res);
+
       } catch (e) {
         await console.log(e);
       }

@@ -12,7 +12,8 @@ module.exports = {
     path: `${__dirname}/dist`
   },
   devServer:{
-    contentBase: `./dist`
+    contentBase: `./dist`,
+    openPage: "index.html",//自動で指定したページを開く
   },
   module: {
     rules: [{
@@ -39,5 +40,11 @@ plugins: [
     filename: "style.css",
   })
 ],
-// target: 'node'
+// この設定はrequireパッケージのfsのエラーを防ぐ
+node: {
+  console: true,
+  fs: 'empty',
+  net: 'empty',
+  tls: 'empty'
+}
 };
