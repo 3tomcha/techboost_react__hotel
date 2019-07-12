@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
-import getGeoCode from '../libs/GoogleGeocodeAPI.js';
+import fetchGeoCode from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 
 class SearchForm extends React.Component {
@@ -42,77 +42,72 @@ class SearchForm extends React.Component {
       var checkOutDay = this.props.checkOutDay.getFullYear() + "-"
       + ("0" + (this.props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
       + this.props.checkOutDay.getDate();
-      let googleGeocodeAPI;
-      let googleGeocode;
-      let rakutenTravelApi;
-      let rakutenTravel;
+      let geocode;
+      let hotelsInfo;
 
+      // yahooAPIをもちいて緯度経度のjsonを取得
+      // return {"latitude":latitude, "longitude":longitude}
       try {
-        googleGeocode = await getGeoCode();
-        await console.log(googleGeocode);
-        // getGeoCode().then(function(response){console.log(response)});
-        // let googleGeocodeAPI_new = new GoogleGeocodeAPI_new;
-        // let res = await googleGeocodeAPI_new.fetchDetailPlan();
-        // await console.log(res);
-
+        geocode = await fetchGeoCode(this.state.location);
+        await console.log(geocode);
       } catch (e) {
         await console.log(e);
       }
 
-
+      // RakutenTravelApiをもちいてhotelsのjsonを取得
       try {
-        rakutenTravelApi = await new RakutenTravelApi();
+        hotelsInfo = await RakutenTravelApi
+        .fetchHotelsInfo(
+          checkInDay,
+          checkOutDay,
+          geocode.latitude,
+          geocode.longitude
+        );
+        await console.log(hotelsInfo);
       } catch (e) {
         await console.log(e);
       }
 
-      try {
-        rakutenTravel = await rakutenTravelApi
-        .sendRequest(checkInDay,checkOutDay,
-          Math.round(googleGeocode.latitude*100)/100,
-          Math.round(googleGeocode.longitude*100)/100).catch((err) => console.log("RakutenTravelApiのエラー"));
-        } catch (e) {
-          await console.log(e);
-        }
+      const hotels  = await JSON.parse(hotelsInfo).hotels
+      this.setState({
+        hotels: hotels,
+        checkInDay: this.props.checkInDay,
+        checkOutDay: this.props.checkOutDay
+      });
+      this.props.updateState(this.state);
 
-        const hotels  = await JSON.parse(rakutenTravel).hotels
-        this.setState({
-          hotels: hotels,
-          checkInDay: this.props.checkInDay,
-          checkOutDay: this.props.checkOutDay
-        });
-        this.props.updateState(this.state);
-      }else{
-        alert("どちらかは入力してください");
-        console.log("checkAnswerのfalseがうごきました");
-      }
-    }
-
-    setLocation(e){
-      console.log("onChangeが動きました");
-      this.state.location = e.target.value;
-    }
-    render() {
-      return(
-        <div>
-          <h1>検索フォーム</h1>
-          <form method="post" action="">
-            <input type="text" placeholder="地名" onChange={this.setLocation}/><br/>
-            チェックイン日
-            <DatePicker
-              selected={this.props.checkInDay}
-              onChange={this.handleCheckInChange}
-              />
-            チェックアウト日
-            <DatePicker
-              selected={this.props.checkOutDay}
-              onChange={this.handleCheckOutChange}
-              /><br/>
-            <input type="submit" onClick={this.checkAnswer} value="検索"/>
-          </form>
-        </div>
-      );
+    }else{
+      alert("どちらかは入力してください");
+      console.log("checkAnswerのfalseがうごきました");
     }
   }
 
-  export default SearchForm;
+  setLocation(e){
+    console.log("onChangeが動きました");
+    this.state.location = e.target.value;
+  }
+
+  render() {
+    return(
+      <div>
+        <h1>検索フォーム</h1>
+        <form method="post" action="">
+          <input type="text" placeholder="地名" onChange={this.setLocation}/><br/>
+          チェックイン日
+          <DatePicker
+            selected={this.props.checkInDay}
+            onChange={this.handleCheckInChange}
+            />
+          チェックアウト日
+          <DatePicker
+            selected={this.props.checkOutDay}
+            onChange={this.handleCheckOutChange}
+            /><br/>
+          <input type="submit" onClick={this.checkAnswer} value="検索"/>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SearchForm;

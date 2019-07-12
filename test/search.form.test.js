@@ -10,7 +10,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils';
 
-// ここらへんはいるかは不明
 Enzyme.configure({ adapter: new Adapter() });
 
 let container;
@@ -44,7 +43,7 @@ it("checkInDay and checkOutDay must be set in input", () => {
   const tomorrow = new Date(
     today.getFullYear(),
     today.getMonth(),
-    today.getDay() + 1,
+    today.getDate() + 1,
     today.getHours(),
     today.getMinutes()
   );
@@ -58,15 +57,15 @@ it("checkInDay and checkOutDay must be set in input", () => {
 
       // チェックイン日の入力ボックス
       let input_in = container.querySelectorAll('input')[1];
-      expect(input_in.value).toBe("07/08/2019");
+      expect(input_in.value).toBe("07/12/2019");
 
       // チェックアウト日の入力ボックス
       let input_out = container.querySelectorAll('input')[2];
-      expect(input_out.value).toBe("07/09/2019");
+      expect(input_out.value).toBe("07/13/2019");
     });
 
 
-    test("全ての入力ボックスが埋まったらsetStateする", () => {
+    test("全ての入力ボックスが埋まったらsetStateする", async() => {
       const today = new Date();
       const tomorrow = new Date(
         today.getFullYear(),
@@ -79,11 +78,11 @@ it("checkInDay and checkOutDay must be set in input", () => {
         checkInDay={today} checkOutDay={tomorrow}/>);
 
         let target = searchForm.find('input').first();
-        target.simulate('change', { target : {value : '東京都千代田区丸の内１丁目'}});
+        await target.simulate('change', { target : {value : '東京都千代田区丸の内１丁目'}});
         let submit = searchForm.find('input').last();
-        submit.simulate('click', { preventDefault : () => {} });
+        await submit.simulate('click', { preventDefault : () => {} });
         // Y is not definedが動くようにしたい
-        expect(searchForm.state('location')).toBe('東京都千代田区丸の内１丁目');
+        await expect(searchForm.state('location')).toBe('東京都千代田区丸の内１丁目');
       });;
 
 

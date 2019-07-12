@@ -19,11 +19,11 @@ function HotelList(props){
 
   return(
     <div>
-    {hotels.map(hotel => {
+    {hotels.map( (hotel,index) => {
       let url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
 
       return(
-        <div>
+        <div key={index}>
           <ul>
             <li>{hotel.hotel[0].hotelBasicInfo.hotelName}</li>
             <li><img src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl}/></li>
