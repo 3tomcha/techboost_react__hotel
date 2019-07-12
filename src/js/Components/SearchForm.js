@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
-import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
+import getGeoCode from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
-import GoogleGeocodeAPI_new from '../libs/GoogleGeocodeAPI_new.js';
 
 class SearchForm extends React.Component {
   constructor(props){
@@ -49,11 +48,11 @@ class SearchForm extends React.Component {
       let rakutenTravel;
 
       try {
-        // googleGeocode = await getGeoCode();
-        // await console.log(googleGeocode);
+        googleGeocode = await getGeoCode();
+        await console.log(googleGeocode);
         // getGeoCode().then(function(response){console.log(response)});
-        let googleGeocodeAPI_new = new GoogleGeocodeAPI_new;
-        let res = await googleGeocodeAPI_new.fetchDetailPlan();
+        // let googleGeocodeAPI_new = new GoogleGeocodeAPI_new;
+        // let res = await googleGeocodeAPI_new.fetchDetailPlan();
         // await console.log(res);
 
       } catch (e) {
@@ -61,28 +60,28 @@ class SearchForm extends React.Component {
       }
 
 
-      // try {
-      //   rakutenTravelApi = await new RakutenTravelApi();
-      // } catch (e) {
-      //   await console.log(e);
-      // }
-      //
-      // try {
-      //   rakutenTravel = await rakutenTravelApi
-      //   .sendRequest(checkInDay,checkOutDay,
-      //     Math.round(googleGeocode.latitude*100)/100,
-      //     Math.round(googleGeocode.longitude*100)/100).catch((err) => console.log("RakutenTravelApiのエラー"));
-      //   } catch (e) {
-      //     await console.log(e);
-      //   }
-      //
-      //   const hotels  = await JSON.parse(rakutenTravel).hotels
-      //   this.setState({
-      //     hotels: hotels,
-      //     checkInDay: this.props.checkInDay,
-      //     checkOutDay: this.props.checkOutDay
-      //   });
-      //   this.props.updateState(this.state);
+      try {
+        rakutenTravelApi = await new RakutenTravelApi();
+      } catch (e) {
+        await console.log(e);
+      }
+
+      try {
+        rakutenTravel = await rakutenTravelApi
+        .sendRequest(checkInDay,checkOutDay,
+          Math.round(googleGeocode.latitude*100)/100,
+          Math.round(googleGeocode.longitude*100)/100).catch((err) => console.log("RakutenTravelApiのエラー"));
+        } catch (e) {
+          await console.log(e);
+        }
+
+        const hotels  = await JSON.parse(rakutenTravel).hotels
+        this.setState({
+          hotels: hotels,
+          checkInDay: this.props.checkInDay,
+          checkOutDay: this.props.checkOutDay
+        });
+        this.props.updateState(this.state);
       }else{
         alert("どちらかは入力してください");
         console.log("checkAnswerのfalseがうごきました");

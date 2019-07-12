@@ -1,28 +1,17 @@
-// GoogleGeocodeAPIの代わりにyahooのAPIを使用
-// https://developer.yahoo.co.jp/webapi/map/openlocalplatform/v1/js/service.html
-class GoogleGeocodeAPI{
-  constructor(address){
-    this.address = address;
-  }
-  sendRequest(){
-    const address = this.address;
-    let request = {query : address};
-    let geocoder = new Y.GeoCoder();
+export default async function getGeoCode(){
+  let url = "https://map.yahooapis.jp/geocode/V1/geoCoder";
+  url += "?appid=";
+  url += "dj00aiZpPUFjQzFjbjNvemRPayZzPWNvbnN1bWVyc2VjcmV0Jng9MzQ-";
+  url += "&query=";
+  url += "東京都千代田区丸の内１丁目";
+  url += "&output=";
+  url += "json";
 
-    var latitude;
-    var longitude;
-
-    let p1 = new Promise((resolve, reject) =>
-    geocoder.execute( request , function( ydf ){
-      if( ydf.features.length > 0 ){
-        let latlng = ydf.features[0].latlng;
-        resolve(latlng);
-      }
-    })
-  );
-  return p1.then(latlng=> {
-    return {"latitude":latlng.lat(), "longitude":latlng.lng()};
-  });
+  let res = await fetch(encodeURI(url));
+  let json = await res.json();
+  let geometry = json.Feature[0].Geometry.Coordinates;
+  geometry = geometry.split(",");
+  let latitude = geometry[0];
+  let longitude = geometry[1];
+  return {"latitude":latitude, "longitude":longitude};
 }
-}
-export default GoogleGeocodeAPI;
