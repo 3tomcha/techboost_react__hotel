@@ -21,34 +21,53 @@ class HotelDetail extends React.Component {
       userReview: "",
       roomInfo: ""
     };
+    console.log("動きました");
   }
   async componentDidMount(){
-    let rakutenTravelApi = new RakutenTravelApi;
-    let response = await rakutenTravelApi.fetchDetailPlan(
+    console.log("componentDidMount動きました1");
+    // let rakutenTravelApi = new RakutenTravelApi;
+    let response = await RakutenTravelApi.fetchDetailPlan(
       this.state.id,
       this.state.checkInDay,
       this.state.checkOutDay
     );
+      await console.log("componentDidMount動きました2");
+    // await console.log(response);
     const hotel = await JSON.parse(response).hotels[0].hotel;
-    let basicInfo="";
+    let basicInfo;
     let roomInfo=[];
+      await console.log("componentDidMount動きました3");
 
-    hotel.map((value,index) =>{
-    if(index == 0){
-      basicInfo = value;
-    }else{
-      roomInfo.push(value);
-    }
-  }
-  );
-  console.log(basicInfo);
-  console.log(roomInfo);
+    // await console.log(hotel);
+    // await console.log(hotel[0].hotelBasicInfo.hotelName);
+    basicInfo = hotel[0].hotelBasicInfo;
+    await console.log(hotel[0].roomInfo);
+
+    roomInfo = hotel[0].roomInfo;
+      await console.log("componentDidMount動きました4");
+    // console.log(basicInfo);
+
+    // await hotel;
+    //
+    //
+    // basicInfo = hotel[0].hotelBasicInfo;
+
+    // hotel.map((value,index) =>{
+    // if(index == 0){
+    //   basicInfo = value;
+    // }else{
+    //   roomInfo.push(value);
+    // }
+  // }
+  // );
+  // console.log("basicInfo".basicInfo);
+  // console.log(roomInfo);
     // const basicInfo = hotel[0].hotelBasicInfo;
 
     // 1～はroominfoなので、別のコンポーネントを割り当てる
-    console.log(hotel);
+    // console.log(hotel);
 
-    this.setState({
+    await this.setState({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
       hotelImageUrl: basicInfo.hotelImageUrl,
@@ -61,6 +80,7 @@ class HotelDetail extends React.Component {
 
   }
     render() {
+      // console.log("renderが動きました");
       // console.log(queryString.parse(this.props.location.search));
       return(
         <div>HotelDetail {this.props.match.params.id}

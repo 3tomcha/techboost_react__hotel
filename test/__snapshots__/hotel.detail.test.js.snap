@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`detail1 1`] = `
+<div>
+  HotelDetail 
+  141356
+  <ul>
+    <li>
+      
+    </li>
+    <li>
+      
+    </li>
+    <li>
+      
+    </li>
+    <li>
+      
+    </li>
+    <li>
+      
+    </li>
+    <li>
+      
+    </li>
+    // 
+    <li />
+    // 
+    <li />
+    // 
+    <li />
+  </ul>
+</div>
+`;
