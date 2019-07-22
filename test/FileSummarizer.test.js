@@ -15,7 +15,7 @@ describe('iistfilesInDirectorySync', () =>{
     const FileSummarizer = require('../src/js/FileSummarizer');
     // console.log(FileSummarizer);
     // const fileSummary = FileSummarizer.summarizeFilesInDirectorySync('src/js');
-    const fileSummary = FileSummarizer.summarizeFilesInDirectorySync('path/to');
+    const fileSummary = FileSummarizer.summarizeFilesInDirectorySync('/path/to');
 
     console.log(fileSummary);
 

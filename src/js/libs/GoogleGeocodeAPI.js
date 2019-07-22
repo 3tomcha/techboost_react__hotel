@@ -13,6 +13,7 @@ export default async function fetchGeoCode(location){
 
   const fetch = require('node-fetch');
   let res = await fetch(encodeURI(url));
+  await console.log(res);
   let json = await res.json();
   let geometry = json.Feature[0].Geometry.Coordinates;
   geometry = geometry.split(",");
