@@ -73,6 +73,7 @@
     "require": "^2.4.20",
     "require-from-url": "^3.1.2",
     "semantic-ui-react": "^0.87.2",
+    "sinon": "^7.3.2",
     "tls": "0.0.1",
     "webpack-dev-server": "^3.7.1"
   }

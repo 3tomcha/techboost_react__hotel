@@ -13,4 +13,5 @@ test("hotelsを含むjsonを返却する", async() => {
   const hotels = await JSON.parse(json).hotels;
   // expect(hotels).toHaveLength(0);
   expect(hotels).not.toHaveLength(0);
+  expect(hotels).toBe('');
 });

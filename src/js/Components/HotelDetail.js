@@ -23,51 +23,25 @@ class HotelDetail extends React.Component {
     };
     console.log("動きました");
   }
+
   async componentDidMount(){
     console.log("componentDidMount動きました1");
-    // let rakutenTravelApi = new RakutenTravelApi;
+
     let response = await RakutenTravelApi.fetchDetailPlan(
       this.state.id,
       this.state.checkInDay,
       this.state.checkOutDay
     );
-      await console.log("componentDidMount動きました2");
-    // await console.log(response);
-    const hotel = await JSON.parse(response).hotels[0].hotel;
-    let basicInfo;
-    let roomInfo=[];
-      await console.log("componentDidMount動きました3");
+    // console.log(response);
+    const hotel = response.hotels[0].hotel;
+    const basicInfo = hotel[0].hotelBasicInfo;
+    const roomInfo = hotel[0].roomInfo;
 
-    // await console.log(hotel);
-    // await console.log(hotel[0].hotelBasicInfo.hotelName);
-    basicInfo = hotel[0].hotelBasicInfo;
-    await console.log(hotel[0].roomInfo);
+    console.log(hotel);
+    console.log(basicInfo);
+    console.log(roomInfo);
 
-    roomInfo = hotel[0].roomInfo;
-      await console.log("componentDidMount動きました4");
-    // console.log(basicInfo);
-
-    // await hotel;
-    //
-    //
-    // basicInfo = hotel[0].hotelBasicInfo;
-
-    // hotel.map((value,index) =>{
-    // if(index == 0){
-    //   basicInfo = value;
-    // }else{
-    //   roomInfo.push(value);
-    // }
-  // }
-  // );
-  // console.log("basicInfo".basicInfo);
-  // console.log(roomInfo);
-    // const basicInfo = hotel[0].hotelBasicInfo;
-
-    // 1～はroominfoなので、別のコンポーネントを割り当てる
-    // console.log(hotel);
-
-    await this.setState({
+    this.setState({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
       hotelImageUrl: basicInfo.hotelImageUrl,
@@ -77,30 +51,32 @@ class HotelDetail extends React.Component {
       roomInfo: roomInfo
     });
 
-
+    console.log("setStateが動きました");
   }
-    render() {
-      // console.log("renderが動きました");
-      // console.log(queryString.parse(this.props.location.search));
-      return(
-        <div>HotelDetail {this.props.match.params.id}
+  render() {
+    // console.log("renderが動きました");
+    // console.log(queryString.parse(this.props.location.search));
+    return(
+      <div>HotelDetail {this.props.match.params.id}
 
-            <ul>
-              <li>{this.state.hotelName}</li>
-              <li>{this.state.reviewAverage}</li>
-              <li>{this.state.hotelImageUrl}</li>
-              <li>{this.state.hotelSpecial}</li>
-              <li>{this.state.access}</li>
-              <li>{this.state.userReview}</li>
+        <ul>
+          <li>{this.state.hotelName}</li>
+          <li>{this.state.reviewAverage}</li>
+          <li>{this.state.hotelImageUrl}</li>
+          <li>{this.state.hotelSpecial}</li>
+          <li>{this.state.access}</li>
+          <li>{this.state.userReview}</li>
 
-              // <li>{this.state.planName}</li>
-              // <li>{this.state.roomBasicInfo}</li>
-              // <li>{this.state.dailyCharge}</li>
-            </ul>
+          //debug用
+          <li>{this.state.checkInDay}</li>
+          <li>{this.state.checkOutDay}</li>
+          // <li>{this.state.roomBasicInfo}</li>
+          // <li>{this.state.dailyCharge}</li>
+        </ul>
 
-</div>
-      );
-    }
+      </div>
+    );
   }
+}
 
-  export default HotelDetail;
+export default HotelDetail;
