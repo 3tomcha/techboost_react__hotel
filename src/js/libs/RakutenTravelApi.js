@@ -12,20 +12,32 @@ class RakutenTravelApi{
     const url = `https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426`
     + `?format=json&checkinDate=${checkinDate}&checkoutDate=${checkoutDate}&latitude=${w_latitude}&longitude=${w_longitude}`
     + `&searchRadius=3&applicationId=1045719661893592374&datumType=1`;
-    console.log(url);
 
     const res = await fetch(encodeURI(url));
-    const json = await res.json();
-    return await JSON.stringify(json);
+    await console.log(res);
+    if (res.ok) {
+      const json = await res.json();
+      return await JSON.stringify(json);
+    }else{
+      throw "fetchHotelsInfoのエラー";
+    }
   }
 
   static async fetchDetailPlan(hotelNo, checkInDate, checkOutDate){
     const url = `https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=`
     + `${checkInDate}&checkoutDate=${checkOutDate}&hotelNo=${hotelNo}&applicationId=1045719661893592374`;
 
-    let response = await fetch(url);
-    let json = await response.json();
-    return await JSON.stringify(json);
+    let res = await fetch(url);
+
+    // await console.log(res);
+    // await console.log(res.status);
+    if (res.ok) {
+
+      let json = await res.json();
+      return await JSON.stringify(json);
+    }else{
+      throw new Error("fetchDetailPlanのエラー");
+    }
   }
 }
 export default RakutenTravelApi;
