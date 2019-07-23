@@ -11,7 +11,17 @@ test("hotelsを含むjsonを返却する", async() => {
     longitude
   );
   const hotels = await JSON.parse(json).hotels;
-  // expect(hotels).toHaveLength(0);
-  expect(hotels).not.toHaveLength(0);
   expect(hotels).toBe('');
+});
+
+test("hotelsを含むjsonを返却する", async() => {
+  let json = await RakutenTravelApi.fetchDetailPlan(
+    141356,
+    "2019-08-04",
+    "2019-08-05",
+  );
+  expect(json).toBe('');
+  // const hotels = await JSON.parse(json).hotels;
+  // expect(hotels).toHaveLength(0);
+  // expect(hotels).not.toHaveLength(0);
 });
