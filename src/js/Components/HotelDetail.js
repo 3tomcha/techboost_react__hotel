@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
 import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
+import HotelPlanList from '../Components/HotelPlanList.js';
 import queryString from 'query-string';
 
 class HotelDetail extends React.Component {
@@ -32,14 +33,16 @@ class HotelDetail extends React.Component {
       this.state.checkInDay,
       this.state.checkOutDay
     );
-    // console.log(response);
-    const hotel = response.hotels[0].hotel;
+    console.log("response" + response);
+
+    const hotel = JSON.parse(response).hotels[0].hotel;
+    // const hotel = response.hotels[0].hotel;
     const basicInfo = hotel[0].hotelBasicInfo;
     const roomInfo = hotel[0].roomInfo;
 
-    console.log(hotel);
-    console.log(basicInfo);
-    console.log(roomInfo);
+    console.log("hotel" + hotel);
+    console.log("basicInfo" + basicInfo);
+    console.log("roomInfo" + roomInfo);
 
     this.setState({
       hotelName: basicInfo.hotelName,
@@ -66,12 +69,6 @@ class HotelDetail extends React.Component {
           <li>{this.state.hotelSpecial}</li>
           <li>{this.state.access}</li>
           <li>{this.state.userReview}</li>
-
-          //debug用
-          <li>{this.state.checkInDay}</li>
-          <li>{this.state.checkOutDay}</li>
-          // <li>{this.state.roomBasicInfo}</li>
-          // <li>{this.state.dailyCharge}</li>
         </ul>
 
       </div>
