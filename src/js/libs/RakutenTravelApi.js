@@ -13,13 +13,14 @@ class RakutenTravelApi{
     + `?format=json&checkinDate=${checkinDate}&checkoutDate=${checkoutDate}&latitude=${w_latitude}&longitude=${w_longitude}`
     + `&searchRadius=3&applicationId=1045719661893592374&datumType=1`;
 
-    const res = await fetch(encodeURI(url));
-    await console.log(res);
-    if (res.ok) {
+    const res = await fetch(encodeURI(url))
+    .catch(()=> console.log("fetchに失敗しました"));
+
+    if (await res.ok) {
       const json = await res.json();
       return await JSON.stringify(json);
     }else{
-      throw "fetchHotelsInfoのエラー";
+      throw Error("fetchHotelsInfoのエラー");
     }
   }
 
@@ -27,16 +28,14 @@ class RakutenTravelApi{
     const url = `https://app.rakuten.co.jp/services/api/Travel/VacantHotelSearch/20170426?format=json&checkinDate=`
     + `${checkInDate}&checkoutDate=${checkOutDate}&hotelNo=${hotelNo}&applicationId=1045719661893592374`;
 
-    let res = await fetch(url);
+    const res = await fetch(encodeURI(url))
+    .catch(()=> console.log("fetchに失敗しました"));
 
-    // await console.log(res);
-    // await console.log(res.status);
-    if (res.ok) {
-
-      let json = await res.json();
+    if (await res.ok) {
+      const json = await res.json();
       return await JSON.stringify(json);
     }else{
-      throw new Error("fetchDetailPlanのエラー");
+      throw Error("fetchDetailPlanのエラー");
     }
   }
 }
