@@ -13,7 +13,7 @@ module.exports = {
   },
   devServer:{
     contentBase: `./dist`,
-    openPage: "index.html",//自動で指定したページを開く
+    openPage: "",//自動で指定したページを開く
   },
   module: {
     rules: [{

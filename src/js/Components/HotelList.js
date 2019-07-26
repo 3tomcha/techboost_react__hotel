@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link, Route } from "react-router-dom"
+import { Link, Route } from "react-router-dom";
+import {Card} from 'react-bootstrap';
 
 function HotelList(props){
   const jsons = props.JSONS;
   var hotels = [];
+  console.log(props);
   console.log(props.hotels);
   if(props.hotels){
     hotels = props.hotels;
@@ -24,6 +26,15 @@ function HotelList(props){
 
       return(
         <div key={index}>
+            <Card>
+            <ul>
+              {hotel.hotel[0].hotelBasicInfo.hotelName}
+              <img src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl}/>
+              {hotel.hotel[0].hotelBasicInfo.hotelSpecial}
+              {hotel.hotel[0].hotelBasicInfo.hotelMinCharge}
+              {hotel.hotel[0].hotelBasicInfo.reviewAverage}
+            </ul>
+            </Card>
           <ul>
             <li>{hotel.hotel[0].hotelBasicInfo.hotelName}</li>
             <li><img src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl}/></li>

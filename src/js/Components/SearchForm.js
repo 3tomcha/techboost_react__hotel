@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
-import fetchGeoCode from '../libs/GoogleGeocodeAPI.js';
-import RakutenTravelApi from '../libs/RakutenTravelApi.js';
+import fetchGeoCode from '../libs/GoogleGeocodeAPI';
+import RakutenTravelApi from '../libs/RakutenTravelApi';
+import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 class SearchForm extends React.Component {
   constructor(props){
@@ -90,21 +91,37 @@ class SearchForm extends React.Component {
   render() {
     return(
       <div>
-        <h1>検索フォーム</h1>
-        <form method="post" action="">
-          <input type="text" placeholder="地名" onChange={this.setLocation}/><br/>
-          チェックイン日
-          <DatePicker
-            selected={this.props.checkInDay}
-            onChange={this.handleCheckInChange}
-            />
-          チェックアウト日
-          <DatePicker
-            selected={this.props.checkOutDay}
-            onChange={this.handleCheckOutChange}
-            /><br/>
-          <input type="submit" onClick={this.checkAnswer} value="検索"/>
-        </form>
+        <Card style={{ width: '18rem' }}>
+          <form method="post" action="">
+            <Card.Header>
+              地名
+            </Card.Header>
+            <Card.Body>
+              <InputGroup>
+                <FormControl placeholder="東京都千代田区丸の内１丁目" onChange={this.setLocation}></FormControl>
+              </InputGroup>
+            </Card.Body>
+            <Card.Header>
+              チェックイン日
+            </Card.Header>
+            <Card.Body>
+              <DatePicker
+                selected={this.props.checkInDay}
+                onChange={this.handleCheckInChange}
+                />
+            </Card.Body>
+            <Card.Header>
+              チェックアウト日
+            </Card.Header>
+            <Card.Body>
+              <DatePicker
+                selected={this.props.checkOutDay}
+                onChange={this.handleCheckOutChange}
+                /><br/>
+            </Card.Body>
+            <Button onClick={this.checkAnswer}>検索</Button>
+          </form>
+        </Card>
       </div>
     );
   }
