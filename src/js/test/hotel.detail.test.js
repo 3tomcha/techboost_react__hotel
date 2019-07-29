@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import HotelDetail from '../src/js/Components/HotelDetail.js';
-import App from '../src/js/App.js';
+import HotelDetail from '../Components/HotelDetail.js';
+import App from '../App.js';
 import TestRenderer from 'react-test-renderer';
 import { Link, Route } from "react-router-dom"
 import {shallow, mount} from 'enzyme';
@@ -9,10 +9,9 @@ import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 import {render} from "enzyme";
 import ReactTestUtils from 'react-dom/test-utils';
-import {MainRouter} from '../src/js/Components/MainRouter.js';
 import toJson from 'enzyme-to-json';
 import sinon from 'sinon';
-import RakutenTravelApi from '../src/js/libs/RakutenTravelApi';
+import RakutenTravelApi from '../libs/RakutenTravelApi';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -24,7 +23,7 @@ queryString.parse.mockReturnValue({
 });
 
 
-jest.mock('../src/js/libs/RakutenTravelApi');
+jest.mock('../libs/RakutenTravelApi');
 // JSON.stringifyがないとテスト対象のJSON.parseでエラーになる
 RakutenTravelApi.fetchDetailPlan.mockResolvedValue(JSON.stringify({
   "hotels":[

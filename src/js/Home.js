@@ -34,16 +34,6 @@ class Home extends React.Component {
     this.setState(state);
   }
   render(){
-    var jsons = [];
-    for (var i = 0; i < 10; i++) {
-      jsons.push({
-        "name":"ホテルニュー大谷",
-        "image":"test.jpg",
-        "goodpoint":"ごはんがおいしい",
-        "price":"10000円",
-        "averagepoint":"55点"
-      });
-    }
     return (
       <div>
           <Row>
@@ -59,7 +49,6 @@ class Home extends React.Component {
               <Col md={8}>
               <HotelList
                 hotels={this.state.hotels}
-                JSONS={jsons}
                 checkInDay={this.state.checkInDay}
                 checkOutDay={this.state.checkOutDay}
                 />

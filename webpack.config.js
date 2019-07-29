@@ -14,6 +14,7 @@ module.exports = {
   devServer:{
     contentBase: `./dist`,
     openPage: "",//自動で指定したページを開く
+    historyApiFallback: true,
   },
   module: {
     rules: [{
