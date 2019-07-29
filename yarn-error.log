@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add jest-html --dev
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add import-local
 
 PATH: 
   C:\Users\to_kobayashi\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\to_kobayashi\bin;C:\Program Files\wkhtmltopdf\bin;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\Vim\vim.exe;C:\Users\to_kobayashi\AppData\Roaming\Composer;C:\Windows\system32\config\systemprofile\AppData\Roaming\Composer\vendor\bin;C:\php;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin;C:\Program Files\Common Files\Intel\WirelessCommon;C:\ProgramData\ComposerSetup\bin;C:\Users\to_kobayashi\AppData\Local\Programs\Python\Python37;C:\php\pear;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\WindowsPowerShell\v1.0;C:\php;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\nodejs;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\Vim;C:\php;C:\Users\to_kobayashi\AppData\Roaming\Composer\vendor\bin;C:\php\pear;C:\Program Files\heroku\bin;C:\Program Files\PostgreSQL\10\bin;C:\Users\to_kobayashi\AppData\Local\Programs\Python\Python37\Scripts;C:\ydiff;C:\Users\to_kobayashi\AppData\Local\atom\bin;C:\Users\to_kobayashi\AppData\Local\Yarn\bin;C:\Program Files\nodejs\node.exe;C:\Users\to_kobayashi\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -26,16 +26,14 @@ npm manifest:
       "test": "jest",
       "build": "webpack",
       "start": "webpack-dev-server --open --inline --hot",
-      "watch": "webpack --watch --config webpack.config.js",
-      "jest-html": "jest-html"
+      "watch": "webpack --watch --config webpack.config.js"
     },
     "jest": {
       "unmockedModulePathPatterns": [
         "<rootDir>/node_modules/react",
         "<rootDir>/node_modules/react-dom",
         "<rootDir>/node_modules/react-addons-test-utils"
-      ],
-      "snapshotSerializers": ["jest-html"]
+      ]
     },
     "keywords": [],
     "author": "",
