@@ -32,7 +32,7 @@ function HotelList(props){
 
         return(
           <IconContext.Provider value={{className: "global-class-name", dominantBaseline:"text-before-edge"}}>
-          <div key={index}>
+          <div key={index} className="hotellist">
             <Card>
               <Card.Body>
                 <Row>

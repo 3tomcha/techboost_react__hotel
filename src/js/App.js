@@ -4,6 +4,7 @@ import Home from './Home';
 import SearchForm from './Components/SearchForm';
 import HotelList from './Components/HotelList';
 import HotelDetail from './Components/HotelDetail';
+import Detail from './Detail';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 
 function App(props){
@@ -12,7 +13,7 @@ function App(props){
     today.getFullYear(),
     today.getMonth(),
     today.getDate() + 1,
-    today.getHours(),
+    today.getHours(2),
     today.getMinutes()
   );
 

@@ -5,6 +5,7 @@ import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 import HotelPlanList from '../Components/HotelPlanList.js';
 import queryString from 'query-string';
+import {Card, Row, Col, Button} from 'react-bootstrap';
 
 class HotelDetail extends React.Component {
   // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
@@ -60,17 +61,36 @@ class HotelDetail extends React.Component {
     // console.log("renderが動きました");
     // console.log(queryString.parse(this.props.location.search));
     return(
-      <div>HotelDetail {this.props.match.params.id}
-
-        <ul>
-          <li>{this.state.hotelName}</li>
-          <li>{this.state.reviewAverage}</li>
-          <li>{this.state.hotelImageUrl}</li>
-          <li>{this.state.hotelSpecial}</li>
-          <li>{this.state.access}</li>
-          <li>{this.state.userReview}</li>
-        </ul>
-
+      <div className="hoteldetail">HotelDetail {this.props.match.params.id}
+        <Card>
+          <Card.Body>
+            <Row>
+              <Col md={3}>
+                <Card.Img variant="top" src={this.state.hotelImageUrl} />
+              </Col>
+              <Col md={7}>
+                <Card.Title>
+                  {this.state.hotelName}
+                </Card.Title>
+                <Card.Text>
+                  {this.state.hotelName}
+                </Card.Text>
+                <Card.Text>
+                  {this.state.reviewAverage}
+                </Card.Text>
+                <Card.Text>
+                  {this.state.hotelSpecial}
+                </Card.Text>
+                <Card.Text>
+                  {this.state.access}
+                </Card.Text>
+                <Card.Text>
+                  {this.state.userReview}
+                </Card.Text>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
       </div>
     );
   }
