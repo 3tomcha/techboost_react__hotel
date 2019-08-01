@@ -24,22 +24,25 @@ function HotelList(props){
     + ("0" + (props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
     + props.checkOutDay.getDate();
   }
+  
 
   return(
     <div>
       {hotels.map( (hotel,index) => {
         let url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
-
-        return(
-          <IconContext.Provider value={{className: "global-class-name", dominantBaseline:"text-before-edge"}}>
+        let stars = [...Array(5).keys()].map(i => {
+          return (i < parseInt(hotel.hotel[0].hotelBasicInfo.reviewAverage))? <FaStar/> : <FaRegStar/>;
+      });
+      return(
+        <IconContext.Provider value={{className: "global-class-name", dominantBaseline:"text-before-edge"}}>
           <div key={index} className="hotellist">
             <Card>
-              <Card.Body>
-                <Row>
-                  <Col md={3}>
-                    <Card.Img variant="top" src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl} />
-                  </Col>
-                  <Col md={7}>
+              <Row>
+                <Col md={3}>
+                  <Card.Img variant="top" src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl} />
+                </Col>
+                <Col md={7}>
+                  <Card.Body>
                     <Card.Title>
                       {hotel.hotel[0].hotelBasicInfo.hotelName}
                     </Card.Title>
@@ -51,20 +54,20 @@ function HotelList(props){
                       {hotel.hotel[0].hotelBasicInfo.hotelMinCharge}
                     </Card.Text>
                     <Card.Text>
-                      <FaStar/><FaStar/><FaStar/><FaStar/><FaRegStar/>
+                      {stars}
                       {hotel.hotel[0].hotelBasicInfo.reviewAverage}
                     </Card.Text>
                     <Link to={url}>
-                      <Button variant="primary">詳細を見る（外部サイトへリンクします）</Button>
+                      <Button variant="primary">詳細を見る</Button>
                     </Link>
-                  </Col>
-                </Row>
-              </Card.Body>
+                  </Card.Body>
+                </Col>
+              </Row>
             </Card>
           </div>
-          </IconContext.Provider>
-        )})}
-      </div>
-    );
-  }
-  export default HotelList;
+        </IconContext.Provider>
+      )})}
+    </div>
+  );
+}
+export default HotelList;

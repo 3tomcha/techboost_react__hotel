@@ -4,6 +4,7 @@ import HotelList from './Components/HotelList';
 import RakutenTravelApi from './libs/RakutenTravelApi';
 import GoogleGeocodeAPI from './libs/GoogleGeocodeAPI';
 import {Container, Row, Col} from 'react-bootstrap';
+import Header from './Components/Header';
 
 class Home extends React.Component {
   constructor(props){
@@ -35,9 +36,14 @@ class Home extends React.Component {
   }
   render(){
     return (
-      <div>
+      <div className="home pagecontainer">
+        <Row>
+          <Col>
+            <Header/>
+          </Col>
+        </Row>
           <Row>
-            <Col md={{span: 3, offset: 1}}>
+            <Col>
               <SearchForm
                 checkInDay={this.state.checkInDay}
                 checkOutDay={this.state.checkOutDay}

@@ -50,6 +50,7 @@
     "devserver": "^0.2.5",
     "enzyme-to-json": "^3.3.5",
     "express": "^4.17.1",
+    "file-loader": "^4.1.0",
     "fs": "^0.0.1-security",
     "http": "^0.0.0",
     "jest-diff": "^24.8.0",

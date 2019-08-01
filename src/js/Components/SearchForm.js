@@ -91,7 +91,7 @@ class SearchForm extends React.Component {
   render() {
     return(
       <div>
-        <Card style={{ width: '18rem' }}>
+        <Card className="justify-content-center">
           <form method="post" action="">
             <Card.Header>
               地名

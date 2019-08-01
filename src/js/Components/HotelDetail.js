@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import DatePicker from 'react-datepicker';
 import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
@@ -6,6 +6,8 @@ import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 import HotelPlanList from '../Components/HotelPlanList.js';
 import queryString from 'query-string';
 import {Card, Row, Col, Button} from 'react-bootstrap';
+import Header from './Header';
+import {FaStar, FaRegStar, FaYenSign, FaCommentDots} from 'react-icons/fa';
 
 class HotelDetail extends React.Component {
   // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
@@ -58,10 +60,12 @@ class HotelDetail extends React.Component {
     console.log("setStateが動きました");
   }
   render() {
-    // console.log("renderが動きました");
-    // console.log(queryString.parse(this.props.location.search));
+    const stars = [...Array(5).keys()].map(i => {
+        return (i < parseInt(this.state.reviewAverage))? <FaStar/> : <FaRegStar/>;
+      });
     return(
-      <div className="hoteldetail">HotelDetail {this.props.match.params.id}
+      <div className="hoteldetail pagecontainer">
+        <Header/>
         <Card>
           <Card.Body>
             <Row>
@@ -73,19 +77,18 @@ class HotelDetail extends React.Component {
                   {this.state.hotelName}
                 </Card.Title>
                 <Card.Text>
-                  {this.state.hotelName}
-                </Card.Text>
-                <Card.Text>
-                  {this.state.reviewAverage}
-                </Card.Text>
-                <Card.Text>
                   {this.state.hotelSpecial}
                 </Card.Text>
                 <Card.Text>
                   {this.state.access}
                 </Card.Text>
                 <Card.Text>
+                  {stars}
+                  {this.state.reviewAverage}
+                </Card.Text>
+                <Card.Text>
                   {this.state.userReview}
+                  <FaCommentDots/>
                 </Card.Text>
               </Col>
             </Row>

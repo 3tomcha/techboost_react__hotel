@@ -21,7 +21,7 @@ function App(props){
     <BrowserRouter>
       <Switch>
         <Route path="/hotels/:id" component={HotelDetail}/>
-        <Route path="/" component={Home}/>
+        <Route exact path="/" component={Home}/>
         <Route path="/hotellist" component={HotelList}/>
       </Switch>
     </BrowserRouter>
