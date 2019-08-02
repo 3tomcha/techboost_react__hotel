@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
@@ -90,6 +91,9 @@ class HotelDetail extends React.Component {
                   {this.state.userReview}
                   <FaCommentDots/>
                 </Card.Text>
+                <Link to="/">
+                  <Button variant="primary">戻る</Button>
+                </Link>
               </Col>
             </Row>
           </Card.Body>
