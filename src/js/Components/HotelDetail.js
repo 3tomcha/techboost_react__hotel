@@ -91,9 +91,13 @@ class HotelDetail extends React.Component {
                   {this.state.userReview}
                   <FaCommentDots/>
                 </Card.Text>
-                <Link to="/">
-                  <Button variant="primary">戻る</Button>
-                </Link>
+                  <Button variant="primary"
+                    onClick={
+                      () => {
+                        console.log(this.props);
+                        this.props.history.goBack();
+                      }
+                    }>戻る</Button>
               </Col>
             </Row>
           </Card.Body>
