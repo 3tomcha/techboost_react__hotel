@@ -9,23 +9,31 @@ import queryString from 'query-string';
 import {Card, Row, Col, Button} from 'react-bootstrap';
 import Header from './Header';
 import {FaStar, FaRegStar, FaYenSign, FaCommentDots} from 'react-icons/fa';
+import { addHoteldetail } from '../redux/actions';
+import { connect } from 'react-redux';
+
 
 class HotelDetail extends React.Component {
   // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
   constructor(props){
     super(props);
-    this.state = {
+    // this.state = {
+    //   id: this.props.match.params.id,
+    //   checkInDay: queryString.parse(this.props.location.search).checkInDate,
+    //   checkOutDay: queryString.parse(this.props.location.search).checkOutDate,
+    //   hotelName: "",
+    //   reviewAverage: "",
+    //   hotelImageUrl: "",
+    //   hotelSpecial: "",
+    //   access: "",
+    //   userReview: "",
+    //   roomInfo: ""
+    // };
+    this.props.addHoteldetail({
       id: this.props.match.params.id,
       checkInDay: queryString.parse(this.props.location.search).checkInDate,
-      checkOutDay: queryString.parse(this.props.location.search).checkOutDate,
-      hotelName: "",
-      reviewAverage: "",
-      hotelImageUrl: "",
-      hotelSpecial: "",
-      access: "",
-      userReview: "",
-      roomInfo: ""
-    };
+      checkOutDay:queryString.parse(this.props.location.search).checkOutDate
+    });
     console.log("動きました");
   }
 
@@ -106,5 +114,8 @@ class HotelDetail extends React.Component {
     );
   }
 }
-
-export default HotelDetail;
+// export default HotelDetail;
+export default connect(
+  null,
+  {addHoteldetail}
+)(HotelDetail);

@@ -6,6 +6,8 @@ import HotelList from './Components/HotelList';
 import HotelDetail from './Components/HotelDetail';
 import Detail from './Detail';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App(props){
   const today = new Date();
@@ -19,11 +21,13 @@ function App(props){
 
   return(
     <BrowserRouter>
-      <Switch>
-        <Route path="/hotels/:id" component={HotelDetail}/>
-        <Route exact path="/" component={Home}/>
-        <Route path="/hotellist" component={HotelList}/>
-      </Switch>
+      <Provider store={store}>
+        <Switch>
+          <Route path="/hotels/:id" component={HotelDetail}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/hotellist" component={HotelList}/>
+        </Switch>
+      </Provider>
     </BrowserRouter>
   );
 }
