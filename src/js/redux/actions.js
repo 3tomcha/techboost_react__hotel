@@ -1,4 +1,4 @@
-export const addHoteldetail = hotel => ({
-    type: "addHoteldetail",
+export const setHoteldetail = hotel => ({
+    type: "setHoteldetail",
     payload: hotel
 });

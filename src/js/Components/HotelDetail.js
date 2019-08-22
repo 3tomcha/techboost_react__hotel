@@ -1,20 +1,15 @@
 import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from "react-router-dom";
-import DatePicker from 'react-datepicker';
-import GoogleGeocodeAPI from '../libs/GoogleGeocodeAPI.js';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
-import HotelPlanList from '../Components/HotelPlanList.js';
 import queryString from 'query-string';
 import {Card, Row, Col, Button} from 'react-bootstrap';
 import Header from './Header';
 import {FaStar, FaRegStar, FaYenSign, FaCommentDots} from 'react-icons/fa';
-import { addHoteldetail } from '../redux/actions';
+import { setHoteldetail } from '../redux/actions';
 import { connect } from 'react-redux';
 
 
 class HotelDetail extends React.Component {
-  // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
   constructor(props){
     super(props);
     this.id = this.props.match.params.id;
@@ -23,6 +18,7 @@ class HotelDetail extends React.Component {
   }
 
   async componentDidMount(){
+      // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
     const response = await RakutenTravelApi.fetchDetailPlan(
       this.id,
       this.checkInDay,
@@ -33,7 +29,7 @@ class HotelDetail extends React.Component {
     const basicInfo = hotel[0].hotelBasicInfo;
     const roomInfo = hotel[0].roomInfo;
 
-    this.props.addHoteldetail({
+    this.props.setHoteldetail({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
       hotelImageUrl: basicInfo.hotelImageUrl,
@@ -45,8 +41,9 @@ class HotelDetail extends React.Component {
   }
 
   render() {
+    // ユーザー評価によって星の数を増減
     const stars = [...Array(5).keys()].map(i => {
-      return (i < parseInt(this.props.reviewAverage))? <FaStar/> : <FaRegStar/>;
+      return (i < parseInt(this.props.hotel.reviewAverage))? <FaStar key={i} /> : <FaRegStar key={i} />;
   });
   return(
     <div className="hoteldetail pagecontainer">
@@ -55,30 +52,29 @@ class HotelDetail extends React.Component {
         <Card.Body>
           <Row>
             <Col md={3}>
-              <Card.Img variant="top" src={this.props.hotelImageUrl} />
+              <Card.Img variant="top" src={this.props.hotel.hotelImageUrl} />
             </Col>
             <Col md={7}>
               <Card.Title>
-                {this.props.hotelName}
+                {this.props.hotel.hotelName}
               </Card.Title>
               <Card.Text>
-                {this.props.hotelSpecial}
+                {this.props.hotel.hotelSpecial}
               </Card.Text>
               <Card.Text>
-                {this.props.access}
+                {this.props.hotel.access}
               </Card.Text>
               <Card.Text>
                 {stars}
-                {this.props.reviewAverage}
+                {this.props.hotel.reviewAverage}
               </Card.Text>
               <Card.Text>
-                {this.props.userReview}
+                {this.props.hotel.userReview}
                 <FaCommentDots/>
               </Card.Text>
               <Button variant="primary"
                 onClick={
                   () => {
-                    console.log(this.props);
                     this.props.history.goBack();
                   }
                 }>戻る</Button>
@@ -91,11 +87,12 @@ class HotelDetail extends React.Component {
   }
 }
 
+// storeから得たstateは、propsのhotelに変更
 function mapStateToProps(state){
-  return state;
+  return { hotel: state };
 }
 
 export default connect(
   mapStateToProps,
-  {addHoteldetail}
+  {setHoteldetail}
 )(HotelDetail);

@@ -11,7 +11,7 @@ const initialState = {
 
 export default function(state = initialState,action){
   switch (action.type) {
-    case "addHoteldetail":{
+    case "setHoteldetail":{
       return {
         ...state,
         hotelName: action.payload.hotelName,
