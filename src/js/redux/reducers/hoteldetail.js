@@ -1,8 +1,5 @@
 // actionに応じてstateを変更する
 const initialState = {
-  id: "",
-  checkInDay: "",
-  checkOutDay: "",
   hotelName: "",
   reviewAverage: "",
   hotelImageUrl: "",
@@ -15,13 +12,15 @@ const initialState = {
 export default function(state = initialState,action){
   switch (action.type) {
     case "addHoteldetail":{
-      const { id, checkInDay, checkOutDay } = action.payload;
-
       return {
         ...state,
-        id: id,
-        checkInDay: checkInDay,
-        checkOutDay: checkOutDay
+        hotelName: action.payload.hotelName,
+        reviewAverage: action.payload.reviewAverage,
+        hotelImageUrl: action.payload.hotelImageUrl,
+        hotelSpecial: action.payload.hotelSpecial,
+        access: action.payload.access,
+        userReview: action.payload.userReview,
+        roomInfo: action.payload.roomInfo
       };
     }
 
