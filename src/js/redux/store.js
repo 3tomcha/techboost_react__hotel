@@ -1,5 +1,6 @@
 import { createStore } from "redux";
-import reducer from "./reducers/hoteldetail";
+import reducer from "./reducers/index";
+// import reducer from "./reducers/index";
 
 const store = createStore(
   reducer,

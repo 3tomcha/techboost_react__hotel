@@ -41,6 +41,8 @@ class HotelDetail extends React.Component {
   }
 
   render() {
+    // console.log(this.state);
+    console.log(this.props);
     // ユーザー評価によって星の数を増減
     const stars = [...Array(5).keys()].map(i => {
       return (i < parseInt(this.props.hotel.reviewAverage))? <FaStar key={i} /> : <FaRegStar key={i} />;
@@ -89,7 +91,7 @@ class HotelDetail extends React.Component {
 
 // storeから得たstateは、propsのhotelに変更
 function mapStateToProps(state){
-  return { hotel: state };
+  return { hotel: state.hoteldetail};
 }
 
 export default connect(
