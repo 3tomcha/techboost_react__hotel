@@ -24,11 +24,13 @@ class HotelDetail extends React.Component {
       this.checkInDay,
       this.checkOutDay
     );
+    console.log(response);
 
     const hotel = JSON.parse(response).hotels[0].hotel;
     const basicInfo = hotel[0].hotelBasicInfo;
     const roomInfo = hotel[0].roomInfo;
 
+  console.log("ここまでは動きました");
     this.props.setHoteldetail({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
@@ -40,6 +42,12 @@ class HotelDetail extends React.Component {
     });
   }
 
+// render(){
+//   console.log(this);
+//   return (
+//     <div>aaa</div>
+//   );
+// }
   render() {
     // console.log(this.state);
     console.log(this.props);

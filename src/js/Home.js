@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SearchForm from './Components/SearchForm';
 import HotelList from './Components/HotelList';
 import RakutenTravelApi from './libs/RakutenTravelApi';
@@ -69,11 +70,11 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state){
-  return state;
+  return {home: state.home};
 }
 export default Home;
 
 // export default connect(
-//   mapStateToProps,
+//   null,
 //   {setHome}
 // )(Home);
