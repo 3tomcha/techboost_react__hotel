@@ -6,3 +6,7 @@ export const setHoteldetail = hotel => ({
 export const setHome = () => ({
     type: "setHome"
 });
+
+export const setHotel = () => ({
+    type: "setHotel"
+});

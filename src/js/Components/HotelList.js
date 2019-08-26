@@ -6,13 +6,9 @@ import {FaStar, FaRegStar, FaYenSign} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
 function HotelList(props){
-  const jsons = props.JSONS;
-  var hotels = [];
+  let hotels = [];
   let checkInDay;
   let checkOutDay;
-
-  console.log(props);
-  console.log(props.hotels);
 
   if(props.hotels){
     hotels = props.hotels;
@@ -24,13 +20,13 @@ function HotelList(props){
     + ("0" + (props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
     + props.checkOutDay.getDate();
   }
-  
+
 
   return(
     <div>
       {hotels.map( (hotel,index) => {
-        let url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
-        let stars = [...Array(5).keys()].map(i => {
+        const url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
+        const stars = [...Array(5).keys()].map(i => {
           return (i < parseInt(hotel.hotel[0].hotelBasicInfo.reviewAverage))? <FaStar/> : <FaRegStar/>;
       });
       return(

@@ -21,13 +21,13 @@ function App(props){
 
   return(
     <BrowserRouter>
-      <Provider store={store}>
         <Switch>
+          <Provider store={store}>
           <Route path="/hotels/:id" component={HotelDetail}/>
           <Route exact path="/" component={Home}/>
           <Route path="/hotellist" component={HotelList}/>
+        </Provider>
         </Switch>
-      </Provider>
     </BrowserRouter>
   );
 }
