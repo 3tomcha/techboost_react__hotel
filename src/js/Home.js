@@ -18,27 +18,28 @@ class Home extends React.Component {
       checkInDay: null,
       checkOutDay: null
     };
+    console.log(props);
     // console.log("動きました");
     // this.props.setHome();
-    this.handleCheckInChange = this.handleCheckInChange.bind(this);
-    this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
+    // this.handleCheckInChange = this.handleCheckInChange.bind(this);
+    // this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
   }
   // componentDidMount(){
   //   this.props.setHome();
   // }
 
-  handleCheckInChange(date){
-    console.log(date);
-    this.setState({
-      checkInDay: date,
-    });
-  }
-  handleCheckOutChange(date){
-    console.log(date);
-    this.setState({
-      checkOutDay: date,
-    });
-  }
+  // handleCheckInChange(date){
+  //   console.log(date);
+  //   this.setState({
+  //     checkInDay: date,
+  //   });
+  // }
+  // handleCheckOutChange(date){
+  //   console.log(date);
+  //   this.setState({
+  //     checkOutDay: date,
+  //   });
+  // }
   updateState(state){
     this.setState(state);
   }
@@ -83,9 +84,9 @@ class Home extends React.Component {
 //   return {home: state.home};
 // }
 
-function mapStateToProps(state){
-  return state;
-}
+// function mapStateToProps(state){
+//   return state;
+// }
 // export default connect(
 //   mapStateToProps,
 //   null

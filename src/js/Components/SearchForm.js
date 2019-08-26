@@ -4,16 +4,13 @@ import DatePicker from 'react-datepicker';
 import fetchGeoCode from '../libs/GoogleGeocodeAPI';
 import RakutenTravelApi from '../libs/RakutenTravelApi';
 import {Card, InputGroup, FormControl, Button} from 'react-bootstrap';
+import { setForm, setCheckIn, setCheckOut, setHotelInfo } from '../redux/actions';
+import { connect } from 'react-redux';
+
 
 class SearchForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      location: "",
-      hotels: "",
-      checkInDay: "",
-      checkOutDay: ""
-    };
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
@@ -21,36 +18,31 @@ class SearchForm extends React.Component {
   }
 
   handleCheckInChange(date){
-    this.props.handleCheckInChange(date);
+    this.props.setCheckIn(date);
   }
   handleCheckOutChange(date){
-    this.props.handleCheckOutChange(date);
+      this.props.setCheckOut(date);
   }
 
   async checkAnswer(e){
     e.preventDefault();
-    console.log("checkAnswerが動きました");
 
-    if(this.state.location!="" && this.props.checkInDay!="" && this.props.checkOutDay!=""){
+    if(this.props.searchform.location!="" && this.props.searchform.checkInDay!="" && this.props.searchform.checkOutDay!=""){
+      const location = this.props.searchform.location;
+      const checkInDay = this.props.searchform.checkInDay.getFullYear() + "-"
+      + ("0" + (this.props.searchform.checkInDay.getMonth() + 1) ).slice(-2) + "-"
+      + this.props.searchform.checkInDay.getDate();
 
-      console.log("checkAnswerのtrueがうごきました");
-
-      const location = this.state.location;
-      var checkInDay = this.props.checkInDay.getFullYear() + "-"
-      + ("0" + (this.props.checkInDay.getMonth() + 1) ).slice(-2) + "-"
-      + this.props.checkInDay.getDate();
-
-      var checkOutDay = this.props.checkOutDay.getFullYear() + "-"
-      + ("0" + (this.props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
-      + this.props.checkOutDay.getDate();
+      const checkOutDay = this.props.searchform.checkOutDay.getFullYear() + "-"
+      + ("0" + (this.props.searchform.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
+      + this.props.searchform.checkOutDay.getDate();
       let geocode;
       let hotelsInfo;
 
       // yahooAPIをもちいて緯度経度のjsonを取得
       // return {"latitude":latitude, "longitude":longitude}
       try {
-        geocode = await fetchGeoCode(this.state.location);
-        await console.log(geocode);
+        geocode = await fetchGeoCode(location);
       } catch (e) {
         await console.log(e);
       }
@@ -64,18 +56,18 @@ class SearchForm extends React.Component {
           geocode.latitude,
           geocode.longitude
         );
-        await console.log(hotelsInfo);
       } catch (e) {
         await console.log(e);
       }
 
       const hotels  = await JSON.parse(hotelsInfo).hotels
-      this.setState({
-        hotels: hotels,
-        checkInDay: this.props.checkInDay,
-        checkOutDay: this.props.checkOutDay
-      });
-      this.props.updateState(this.state);
+      // this.setState({
+      //   hotels: hotels,
+      //   checkInDay: this.props.searchform.checkInDay,
+      //   checkOutDay: this.props.searchform.checkOutDay
+      // });
+      this.props.setHotelInfo(hotels);
+      // this.props.updateState(this.state);
 
     }else{
       alert("どちらかは入力してください");
@@ -85,7 +77,9 @@ class SearchForm extends React.Component {
 
   setLocation(e){
     console.log("onChangeが動きました");
-    this.state.location = e.target.value;
+    this.props.setForm(e.target.value, "setLocation");
+    console.log(this.props);
+    // this.state.location = e.target.value;
   }
 
   render() {
@@ -106,7 +100,7 @@ class SearchForm extends React.Component {
             </Card.Header>
             <Card.Body>
               <DatePicker
-                selected={this.props.checkInDay}
+                selected={this.props.searchform.checkInDay}
                 onChange={this.handleCheckInChange}
                 />
             </Card.Body>
@@ -115,7 +109,7 @@ class SearchForm extends React.Component {
             </Card.Header>
             <Card.Body>
               <DatePicker
-                selected={this.props.checkOutDay}
+                selected={this.props.searchform.checkOutDay}
                 onChange={this.handleCheckOutChange}
                 /><br/>
             </Card.Body>
@@ -127,4 +121,12 @@ class SearchForm extends React.Component {
   }
 }
 
-export default SearchForm;
+function mapStateToProps(state){
+  console.log(state);
+    return { searchform: state.searchform};
+}
+// export default SearchForm;
+export default connect(
+  mapStateToProps,
+  {setForm, setCheckIn, setCheckOut, setHotelInfo}
+)(SearchForm);

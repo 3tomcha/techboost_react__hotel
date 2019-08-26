@@ -10,6 +10,8 @@ function HotelList(props){
   let checkInDay;
   let checkOutDay;
 
+  console.log("HotelList:" + props);
+
   if(props.hotels){
     hotels = props.hotels;
     checkInDay = props.checkInDay.getFullYear() + "-"
