@@ -5,7 +5,7 @@ const initialState = {
   checkOutDay: null
 };
 
-export default function(state = initialState, action){
+export function home(state = initialState, action){
   switch(action.type){
     case "setHome":{
       return state;

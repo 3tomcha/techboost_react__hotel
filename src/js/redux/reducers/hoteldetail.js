@@ -9,7 +9,7 @@ const initialState = {
   roomInfo: ""
 };
 
-export default function(state = initialState,action){
+export function hoteldetail(state = initialState,action){
   switch (action.type) {
     case "setHoteldetail":{
       return {

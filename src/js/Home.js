@@ -6,8 +6,8 @@ import RakutenTravelApi from './libs/RakutenTravelApi';
 import GoogleGeocodeAPI from './libs/GoogleGeocodeAPI';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from './Components/Header';
-// import { setHome } from './redux/actions';
-// import { connect } from 'react-redux';
+import { setHome } from './redux/actions';
+import { connect } from 'react-redux';
 
 class Home extends React.Component {
   constructor(props){
@@ -18,10 +18,14 @@ class Home extends React.Component {
       checkInDay: null,
       checkOutDay: null
     };
+    // console.log("動きました");
     // this.props.setHome();
     this.handleCheckInChange = this.handleCheckInChange.bind(this);
     this.handleCheckOutChange = this.handleCheckOutChange.bind(this);
   }
+  // componentDidMount(){
+  //   this.props.setHome();
+  // }
 
   handleCheckInChange(date){
     console.log(date);
@@ -38,6 +42,11 @@ class Home extends React.Component {
   updateState(state){
     this.setState(state);
   }
+  // render(){
+  //   return (
+  //     <div>aaa</div>
+  //   );
+  // }
   render(){
     return (
       <div className="home pagecontainer">
@@ -69,12 +78,17 @@ class Home extends React.Component {
   }
 }
 
-function mapStateToProps(state){
-  return {home: state.home};
-}
-export default Home;
+// export default Home;
+// function mapStateToProps(state){
+//   return {home: state.home};
+// }
 
+function mapStateToProps(state){
+  return state;
+}
 // export default connect(
-//   null,
-//   {setHome}
+//   mapStateToProps,
+//   null
 // )(Home);
+
+export default Home;

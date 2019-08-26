@@ -3,7 +3,6 @@ export const setHoteldetail = hotel => ({
     payload: hotel
 });
 
-export const setHome = hotel => ({
-    type: "setHome",
-    payload: hotel
+export const setHome = () => ({
+    type: "setHome"
 });
