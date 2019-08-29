@@ -18,7 +18,7 @@ class HotelDetail extends React.Component {
   }
 
   async componentDidMount(){
-      // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
+    // checkInDay,checkOutDayを元に、楽天APIを用いてホテル詳細情報を取得する
     const response = await RakutenTravelApi.fetchDetailPlan(
       this.id,
       this.checkInDay,
@@ -30,7 +30,7 @@ class HotelDetail extends React.Component {
     const basicInfo = hotel[0].hotelBasicInfo;
     const roomInfo = hotel[0].roomInfo;
 
-  console.log("ここまでは動きました");
+    console.log("ここまでは動きました");
     this.props.setHoteldetail({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
@@ -38,16 +38,17 @@ class HotelDetail extends React.Component {
       hotelSpecial: basicInfo.hotelSpecial,
       access: basicInfo.access,
       userReview: basicInfo.userReview,
-      roomInfo: roomInfo
+      roomInfo: roomInfo,
+      planListUrl: basicInfo.planListUrl,
     });
   }
 
-// render(){
-//   console.log(this);
-//   return (
-//     <div>aaa</div>
-//   );
-// }
+  // render(){
+  //   console.log(this);
+  //   return (
+  //     <div>aaa</div>
+  //   );
+  // }
   render() {
     // console.log(this.state);
     console.log(this.props);
@@ -82,27 +83,36 @@ class HotelDetail extends React.Component {
                 {this.props.hotel.userReview}
                 <FaCommentDots/>
               </Card.Text>
-              <Button variant="primary"
-                onClick={
-                  () => {
-                    this.props.history.goBack();
-                  }
-                }>戻る</Button>
+              <Row className="w-75 ml-auto mr-auto">
+                <Col>
+                <Button variant="primary" size="lg"
+                  onClick={
+                    () => {
+                      this.props.history.goBack();
+                    }
+                  }>戻る</Button>
+              </Col>
+                <Col>
+                  <a href={this.props.hotel.planListUrl}>
+                    <Button variant="primary" size="lg">詳細(外部サイトへ遷移します)</Button></a>
               </Col>
             </Row>
-          </Card.Body>
-        </Card>
-      </div>
-    );
+
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </div>
+      );
+    }
   }
-}
 
-// storeから得たstateは、propsのhotelに変更
-function mapStateToProps(state){
-  return { hotel: state.hoteldetail};
-}
+  // storeから得たstateは、propsのhotelに変更
+  function mapStateToProps(state){
+    return { hotel: state.hoteldetail};
+  }
 
-export default connect(
-  mapStateToProps,
-  {setHoteldetail}
-)(HotelDetail);
+  export default connect(
+    mapStateToProps,
+    {setHoteldetail}
+  )(HotelDetail);

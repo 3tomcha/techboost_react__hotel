@@ -6,7 +6,8 @@ const initialState = {
   hotelSpecial: "",
   access: "",
   userReview: "",
-  roomInfo: ""
+  roomInfo: "",
+  planListUrl: ""
 };
 
 export function hoteldetail(state = initialState,action){
@@ -20,7 +21,8 @@ export function hoteldetail(state = initialState,action){
         hotelSpecial: action.payload.hotelSpecial,
         access: action.payload.access,
         userReview: action.payload.userReview,
-        roomInfo: action.payload.roomInfo
+        roomInfo: action.payload.roomInfo,
+        planListUrl: action.payload.planListUrl
       };
     }
 
