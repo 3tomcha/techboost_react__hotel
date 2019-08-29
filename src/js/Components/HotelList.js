@@ -4,13 +4,16 @@ import { Link, Route } from "react-router-dom";
 import {Card, Row, Col, Button} from 'react-bootstrap';
 import {FaStar, FaRegStar, FaYenSign} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
+import { connect } from 'react-redux';
+
 
 function HotelList(props){
   let hotels = [];
   let checkInDay;
   let checkOutDay;
 
-  console.log("HotelList:" + props);
+  console.log("HotelList:");
+  console.log(props);
 
   if(props.hotels){
     hotels = props.hotels;
@@ -68,4 +71,8 @@ function HotelList(props){
     </div>
   );
 }
-export default HotelList;
+// export default HotelList;
+export default connect(
+  null,
+  null
+)(HotelList);

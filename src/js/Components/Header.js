@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Row} from 'react-bootstrap';
-import Logo from '../../images/logo.png';
+// import Logo from '../../images/logo.png';
 
 function Header(){
-  const path = "/" + Logo;
+  // const path = "/" + Logo;
   return(
       <header>
         <Row>
-          <img src={path}/>
+          // <img src={path}/>
         </Row>
       </header>
   );

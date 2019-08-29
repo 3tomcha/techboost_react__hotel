@@ -4,10 +4,9 @@ import Home from './Home';
 import SearchForm from './Components/SearchForm';
 import HotelList from './Components/HotelList';
 import HotelDetail from './Components/HotelDetail';
-import Detail from './Detail';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import { Provider } from 'react-redux';
-import store from './redux/store';
+// import store from './redux/store';
 
 function App(props){
   const today = new Date();
@@ -19,16 +18,19 @@ function App(props){
     today.getMinutes()
   );
 
+  console.log("App");
+  console.log(props.store);
+
   return(
-    <BrowserRouter>
+      <BrowserRouter>
         <Switch>
-          <Provider store={store}>
+          <Provider store={props.store}>
           <Route path="/hotels/:id" component={HotelDetail}/>
           <Route exact path="/" component={Home}/>
           <Route path="/hotellist" component={HotelList}/>
         </Provider>
         </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 }
 export default App;
