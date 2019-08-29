@@ -5,12 +5,14 @@ import HotelList from './Components/HotelList';
 import { Container, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { setHome, setCheckIn, setCheckOut } from './redux/actions';
+import Header from './Components/Header';
 
 function Home(props){
   return (
     <div className="home pagecontainer">
       <Row>
         <Col>
+          <Header/>
         </Col>
       </Row>
       <Row>

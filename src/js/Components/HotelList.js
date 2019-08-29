@@ -1,31 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Route } from "react-router-dom";
-import {Card, Row, Col, Button} from 'react-bootstrap';
-import {FaStar, FaRegStar, FaYenSign} from 'react-icons/fa';
-import {IconContext} from 'react-icons';
+import { Card, Row, Col, Button } from 'react-bootstrap';
+import { FaStar, FaRegStar, FaYenSign } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
 import { connect } from 'react-redux';
 
+
+const formatDay = (day) => (
+  day.getFullYear() + "-" + ("0" + (day.getMonth() + 1) ).slice(-2) + "-" + day.getDate()
+);
 
 function HotelList(props){
   let hotels = [];
   let checkInDay;
   let checkOutDay;
 
-  console.log("HotelList:");
-  console.log(props);
-
   if(props.hotels){
     hotels = props.hotels;
-    checkInDay = props.checkInDay.getFullYear() + "-"
-    + ("0" + (props.checkInDay.getMonth() + 1) ).slice(-2) + "-"
-    + props.checkInDay.getDate();
-
-    checkOutDay = props.checkOutDay.getFullYear() + "-"
-    + ("0" + (props.checkOutDay.getMonth() + 1) ).slice(-2) + "-"
-    + props.checkOutDay.getDate();
+    checkInDay = formatDay(props.checkInDay);
+    checkOutDay = formatDay(props.checkOutDay);
   }
-
 
   return(
     <div>
@@ -71,7 +66,7 @@ function HotelList(props){
     </div>
   );
 }
-// export default HotelList;
+
 export default connect(
   null,
   null
