@@ -2,11 +2,12 @@ import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 import queryString from 'query-string';
-import {Card, Row, Col, Button} from 'react-bootstrap';
+import { Card, Row, Col, Button } from 'react-bootstrap';
 import Header from './Header';
-import {FaStar, FaRegStar, FaYenSign, FaCommentDots} from 'react-icons/fa';
+import { FaStar, FaRegStar, FaYenSign, FaCommentDots } from 'react-icons/fa';
 import { setHoteldetail } from '../redux/actions';
 import { connect } from 'react-redux';
+import HotelPlanList from './HotelPlanList';
 
 
 class HotelDetail extends React.Component {
@@ -24,13 +25,11 @@ class HotelDetail extends React.Component {
       this.checkInDay,
       this.checkOutDay
     );
-    console.log(response);
 
     const hotel = JSON.parse(response).hotels[0].hotel;
-    const basicInfo = hotel[0].hotelBasicInfo;
-    const roomInfo = hotel[0].roomInfo;
+    const basicInfo = hotel.shift().hotelBasicInfo;
+    const roomInfos = hotel;
 
-    console.log("ここまでは動きました");
     this.props.setHoteldetail({
       hotelName: basicInfo.hotelName,
       reviewAverage: basicInfo.reviewAverage,
@@ -38,19 +37,12 @@ class HotelDetail extends React.Component {
       hotelSpecial: basicInfo.hotelSpecial,
       access: basicInfo.access,
       userReview: basicInfo.userReview,
-      roomInfo: roomInfo,
+      roomInfos: roomInfos,
       planListUrl: basicInfo.planListUrl,
     });
   }
 
-  // render(){
-  //   console.log(this);
-  //   return (
-  //     <div>aaa</div>
-  //   );
-  // }
   render() {
-    // console.log(this.state);
     console.log(this.props);
     // ユーザー評価によって星の数を増減
     const stars = [...Array(5).keys()].map(i => {
@@ -65,7 +57,7 @@ class HotelDetail extends React.Component {
             <Col md={3}>
               <Card.Img variant="top" src={this.props.hotel.hotelImageUrl} />
             </Col>
-            <Col md={7}>
+            <Col md={7} className="position-relative">
               <Card.Title>
                 {this.props.hotel.hotelName}
               </Card.Title>
@@ -83,23 +75,23 @@ class HotelDetail extends React.Component {
                 {this.props.hotel.userReview}
                 <FaCommentDots/>
               </Card.Text>
-              <Row className="w-75 ml-auto mr-auto">
+              <Row className="w-75 pob">
                 <Col>
-                <Button variant="primary" size="lg"
-                  onClick={
-                    () => {
-                      this.props.history.goBack();
-                    }
-                  }>戻る</Button>
-              </Col>
-                <Col>
-                  <a href={this.props.hotel.planListUrl}>
-                    <Button variant="primary" size="lg">詳細(外部サイトへ遷移します)</Button></a>
-              </Col>
-            </Row>
-
+                  <Button variant="primary" size="lg"
+                    onClick={
+                      () => {
+                        this.props.history.goBack();
+                      }
+                    }>戻る</Button>
+                  </Col>
+                  <Col>
+                    <a href={this.props.hotel.planListUrl}>
+                      <Button variant="primary" size="lg">詳細</Button></a>
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
+              <HotelPlanList roomInfos={this.props.hotel.roomInfos}/>
             </Card.Body>
           </Card>
         </div>

@@ -21,7 +21,7 @@ export function hoteldetail(state = initialState,action){
         hotelSpecial: action.payload.hotelSpecial,
         access: action.payload.access,
         userReview: action.payload.userReview,
-        roomInfo: action.payload.roomInfo,
+        roomInfos: action.payload.roomInfos,
         planListUrl: action.payload.planListUrl
       };
     }

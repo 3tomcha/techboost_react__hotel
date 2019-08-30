@@ -41,9 +41,9 @@
     }
     img.card-img-top{
       @media screen and (min-width:768px){
-      padding-top:1.25rem;
-      padding-bottom:1.25rem;
-    }
+        padding-top:1.25rem;
+        padding-bottom:1.25rem;
+      }
     }
   }
 }
@@ -88,5 +88,13 @@ header{
   img{
     width: 12rem;
     margin-left: 1rem;
+  }
+}
+
+@media screen and (min-width:1600px){
+  .pob{
+    position: absolute;
+    bottom: 0;
+    left: 20%;
   }
 }
