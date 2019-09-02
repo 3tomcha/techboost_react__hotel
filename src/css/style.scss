@@ -1,11 +1,10 @@
-@import "~bootstrap/dist/css/bootstrap";
+
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 @import "~react-datepicker/dist/react-datepicker";
 
-// $primary-color: red;
-// body {
-//   color: $primary-color;
-// }
-//
 .react-datepicker__input-container input{
   display: block;
   width: 100%;
@@ -23,6 +22,7 @@
 }
 
 .hotellist{
+  margin-bottom:1rem;
   .card{
     .card-text:nth-of-type(2){
       font-size: 2rem;
@@ -31,7 +31,7 @@
       }
     }
     .card-text:nth-of-type(3){
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       svg{
         padding-bottom: 0.4rem;
       }
@@ -49,9 +49,20 @@
 }
 
 .hoteldetail{
+  .card-img-top{
+    margin-bottom:1rem;
+  }
   header + .card{
+    .card-title{
+      font-size: 1.8rem;
+      @media screen and (min-width:1600px){
+      button{
+        margin-left:1.3rem;
+      }
+    }
+    }
     .card-text:nth-of-type(3){
-      font-size: 1.5rem;
+      font-size: 2.5rem;
       svg{
         padding-bottom: 0.4rem;
       }
@@ -60,11 +71,12 @@
       }
     }
     .review_area{
-      background-color: aliceblue;
+      background-color: rgba(195, 66, 84, 0.25);
       padding:2%;
     }
     .card-text:first-of-type{
       text-decoration: underline;
+      font-size: 1.2rem;
     }
   }
   h2{
@@ -72,6 +84,9 @@
     margin-top: 2rem;
   }
   .plan_area{
+    .card-header{
+      font-size: 1.0rem;
+    }
     .card-text:nth-of-type(2){
       font-size: 1.5rem;
     }
@@ -81,6 +96,9 @@
     .card-text span{
       font-size: 1.2rem;
       margin-left:0.5rem;
+    }
+    button{
+      margin-left:1.3rem;
     }
   }
 }
@@ -113,4 +131,9 @@ header{
     bottom: 0;
     left: 20%;
   }
+}
+
+.searchform{
+  margin-bottom:2rem;
+  font-size:1.1rem;
 }

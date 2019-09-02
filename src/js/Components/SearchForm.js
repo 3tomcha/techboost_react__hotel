@@ -84,7 +84,7 @@ class SearchForm extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="searchform">
         <Card className="justify-content-center">
           <form method="post" action="">
             <Card.Header>

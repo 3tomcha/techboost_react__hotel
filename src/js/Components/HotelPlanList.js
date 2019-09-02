@@ -6,7 +6,6 @@ function HotelPlanList(props){
   let hotelInfos = [];
   if(props.roomInfos){
     hotelInfos = props.roomInfos;
-    console.log(props.roomInfos);
   }
 
   return (
@@ -22,7 +21,7 @@ function HotelPlanList(props){
             <Card.Header>{planName}</Card.Header>
             <Card.Body>
               <Card.Text>{roomName}<span>{roomCharge}円</span>
-            <a href={reserveUrl}><p>予約する</p></a>
+            <a href={reserveUrl}><Button>予約する</Button></a>
           </Card.Text>
             </Card.Body>
           </Card>

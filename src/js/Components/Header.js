@@ -8,7 +8,7 @@ const path = "/" + Logo;
 function Header(){
   return(
       <header>
-          <img src={path}/>
+          <a href="/"><img src={path}/></a>
       </header>
   );
 }

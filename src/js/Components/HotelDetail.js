@@ -4,7 +4,7 @@ import RakutenTravelApi from '../libs/RakutenTravelApi.js';
 import queryString from 'query-string';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import Header from './Header';
-import { FaStar, FaRegStar, FaYenSign, FaCommentDots } from 'react-icons/fa';
+import { FaStar, FaRegStar, FaYenSign, FaCommentDots} from 'react-icons/fa';
 import { setHoteldetail } from '../redux/actions';
 import { connect } from 'react-redux';
 import HotelPlanList from './HotelPlanList';
@@ -69,6 +69,7 @@ class HotelDetail extends React.Component {
             <Col md={7} className="position-relative">
               <Card.Title>
                 {hotelName}
+                <a href={planListUrl}><Button variant="outline-primary">楽天トラベルサイトへ</Button></a>
               </Card.Title>
               <Card.Text>
                 {hotelSpecial}
