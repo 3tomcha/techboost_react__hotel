@@ -49,7 +49,7 @@
 }
 
 .hoteldetail{
-  .card{
+  header + .card{
     .card-text:nth-of-type(3){
       font-size: 1.5rem;
       svg{
@@ -59,12 +59,28 @@
         margin-right: 0.5rem;
       }
     }
-    .card-text:last-of-type{
+    .review_area{
       background-color: aliceblue;
       padding:2%;
     }
     .card-text:first-of-type{
       text-decoration: underline;
+    }
+  }
+  h2{
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  .plan_area{
+    .card-text:nth-of-type(2){
+      font-size: 1.5rem;
+    }
+    .card-text:first-of-type{
+      text-decoration: none!important;
+    }
+    .card-text span{
+      font-size: 1.2rem;
+      margin-left:0.5rem;
     }
   }
 }

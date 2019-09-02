@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 
 const formatDay = (day) => (
-  day.getFullYear() + "-" + ("0" + (day.getMonth() + 1) ).slice(-2) + "-" + day.getDate()
+  day.getFullYear() + "-" + ("0" + (day.getMonth() + 1) ).slice(-2) + "-" + ("0" + (day.getDate()) ).slice(-2)
 );
 
 function HotelList(props){

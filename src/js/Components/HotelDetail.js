@@ -47,7 +47,16 @@ class HotelDetail extends React.Component {
     // ユーザー評価によって星の数を増減
     const stars = [...Array(5).keys()].map(i => {
       return (i < parseInt(this.props.hotel.reviewAverage))? <FaStar key={i} /> : <FaRegStar key={i} />;
-  });
+    });
+    const hotelImageUrl = this.props.hotel.hotelImageUrl;
+    const hotelName = this.props.hotel.hotelName;
+    const hotelSpecial = this.props.hotel.hotelSpecial;
+    const hotelAccess = this.props.hotel.access;
+    const reviewAverage = this.props.hotel.reviewAverage;
+    const userReview = this.props.hotel.userReview;
+    const planListUrl = this.props.hotel.planListUrl;
+    const roomInfos = this.props.hotel.roomInfos;
+
   return(
     <div className="hoteldetail pagecontainer">
       <Header/>
@@ -55,43 +64,30 @@ class HotelDetail extends React.Component {
         <Card.Body>
           <Row>
             <Col md={3}>
-              <Card.Img variant="top" src={this.props.hotel.hotelImageUrl} />
+              <Card.Img variant="top" src={hotelImageUrl} />
             </Col>
             <Col md={7} className="position-relative">
               <Card.Title>
-                {this.props.hotel.hotelName}
+                {hotelName}
               </Card.Title>
               <Card.Text>
-                {this.props.hotel.hotelSpecial}
+                {hotelSpecial}
               </Card.Text>
               <Card.Text>
-                {this.props.hotel.access}
+                {hotelAccess}
               </Card.Text>
               <Card.Text>
                 {stars}
-                {this.props.hotel.reviewAverage}
+                {reviewAverage}
               </Card.Text>
-              <Card.Text>
-                {this.props.hotel.userReview}
+              <Card.Text className="review_area">
+                {userReview}
                 <FaCommentDots/>
               </Card.Text>
-              <Row className="w-75 pob">
-                <Col>
-                  <Button variant="primary" size="lg"
-                    onClick={
-                      () => {
-                        this.props.history.goBack();
-                      }
-                    }>戻る</Button>
-                  </Col>
-                  <Col>
-                    <a href={this.props.hotel.planListUrl}>
-                      <Button variant="primary" size="lg">詳細</Button></a>
-                    </Col>
-                  </Row>
+              <h2>プラン</h2>
+              <HotelPlanList roomInfos={roomInfos}/>
                 </Col>
               </Row>
-              <HotelPlanList roomInfos={this.props.hotel.roomInfos}/>
             </Card.Body>
           </Card>
         </div>
@@ -99,7 +95,6 @@ class HotelDetail extends React.Component {
     }
   }
 
-  // storeから得たstateは、propsのhotelに変更
   function mapStateToProps(state){
     return { hotel: state.hoteldetail};
   }
