@@ -27,35 +27,30 @@ function HotelList(props){
       {hotels.map( (hotel,index) => {
         const url ='/hotels/' + hotel.hotel[0].hotelBasicInfo.hotelNo+ '?checkInDate=' + checkInDay + '&checkOutDate=' + checkOutDay;
         const stars = [...Array(5).keys()].map(i => {
-          return (i < parseInt(hotel.hotel[0].hotelBasicInfo.reviewAverage))? <FaStar/> : <FaRegStar/>;
+          return (i < parseInt(hotel.hotel[0].hotelBasicInfo.reviewAverage))? <FaStar key={"fa" + i + index}/> : <FaRegStar key={"fa" + i + index}/>;
       });
+
+      const hotelImageUrl = hotel.hotel[0].hotelBasicInfo.hotelImageUrl;
+      const hotelName = hotel.hotel[0].hotelBasicInfo.hotelName;
+      const hotelSpecial = hotel.hotel[0].hotelBasicInfo.hotelSpecial;
+      const hotelMinCharge = hotel.hotel[0].hotelBasicInfo.hotelMinCharge
+      const reviewAverage = hotel.hotel[0].hotelBasicInfo.reviewAverage;
+
       return(
-        <IconContext.Provider value={{className: "global-class-name", dominantBaseline:"text-before-edge"}}>
-          <div key={index} className="hotellist">
+        <IconContext.Provider value={{className: "global-class-name", dominantBaseline:"text-before-edge"}} key={index}>
+          <div className="hotellist">
             <Card>
               <Row>
-                <Col md={3}>
-                  <Card.Img variant="top" src={hotel.hotel[0].hotelBasicInfo.hotelImageUrl} />
+                <Col md={3} key={"c1" + index}>
+                  <Card.Img variant="top" src={hotelImageUrl} />
                 </Col>
-                <Col md={7}>
+                <Col md={7} key={"c2" + index}>
                   <Card.Body>
-                    <Card.Title>
-                      {hotel.hotel[0].hotelBasicInfo.hotelName}
-                    </Card.Title>
-                    <Card.Text>
-                      {hotel.hotel[0].hotelBasicInfo.hotelSpecial}
-                    </Card.Text>
-                    <Card.Text>
-                      <FaYenSign/>
-                      {hotel.hotel[0].hotelBasicInfo.hotelMinCharge}
-                    </Card.Text>
-                    <Card.Text>
-                      {stars}
-                      {hotel.hotel[0].hotelBasicInfo.reviewAverage}
-                    </Card.Text>
-                    <Link to={url}>
-                      <Button variant="primary">詳細を見る</Button>
-                    </Link>
+                    <Card.Title>{hotelName}</Card.Title>
+                    <Card.Text>{hotelSpecial}</Card.Text>
+                    <Card.Text><FaYenSign/>{hotelMinCharge}</Card.Text>
+                    <Card.Text>{stars}{reviewAverage}</Card.Text>
+                    <Link to={url}><Button variant="primary">詳細を見る</Button></Link>
                   </Card.Body>
                 </Col>
               </Row>
