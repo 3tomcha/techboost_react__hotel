@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`hotels 1`] = `
+<div>
+  <h1>
+    検索フォーム
+  </h1>
+  <form
+    action=""
+    method="post"
+  >
+    <input
+      onChange={[Function]}
+      placeholder="地名"
+      type="text"
+    />
+    <br />
+    チェックイン日
+    <div
+      className="react-datepicker-wrapper"
+    >
+      <div
+        className="react-datepicker__input-container"
+      >
+        <input
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={false}
+          type="text"
+          value="07/12/2019"
+        />
+      </div>
+    </div>
+    チェックアウト日
+    <div
+      className="react-datepicker-wrapper"
+    >
+      <div
+        className="react-datepicker__input-container"
+      >
+        <input
+          className=""
+          disabled={false}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={false}
+          type="text"
+          value="07/06/2019"
+        />
+      </div>
+    </div>
+    <br />
+    <input
+      onClick={[Function]}
+      type="submit"
+      value="検索"
+    />
+  </form>
+</div>
+`;

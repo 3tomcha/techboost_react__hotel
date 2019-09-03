@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: 'development',
   entry: [
-    './src/js/App.js',
+    './src/js/index.js',
     './src/css/style.scss',
   ],
   output: {
@@ -12,7 +12,9 @@ module.exports = {
     path: `${__dirname}/dist`
   },
   devServer:{
-    contentBase: `./dist`
+    contentBase: `./dist`,
+    openPage: "",//自動で指定したページを開く
+    historyApiFallback: true,
   },
   module: {
     rules: [{
@@ -29,6 +31,12 @@ module.exports = {
       loader: [
         'babel-loader',
       ]
+    },
+    {
+       test: /\.(png|svg|jpg|gif)$/,
+       use: [
+         'file-loader'
+       ]
     }
   ]
 },
@@ -38,5 +46,12 @@ plugins: [
     // Options similar to the same options in webpackOptions.output
     filename: "style.css",
   })
-]
+],
+// この設定はrequireパッケージのfsのエラーを防ぐ
+node: {
+  console: true,
+  fs: 'empty',
+  net: 'empty',
+  tls: 'empty'
+}
 };
