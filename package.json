@@ -60,7 +60,7 @@
     "jest-get-type": "^24.8.0",
     "mini-css-extract-plugin": "^0.7.0",
     "net": "^1.0.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "pretty-format": "^24.8.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.1",
